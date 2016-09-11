@@ -1,1 +1,11 @@
+Team: Sara Borghei and Sara Saad
 
+We want to create an interactive weather map which allows users to view the best weather for vacations spots depending on the date of travel.
+This would satisfy requirement 1 because the user can choose locations, dates, and preferred weather. In return, they will be able to view the best options for travel.
+This project will use Google maps and a weather API to satisfy requirement 2.
+We will use Choropleth visualizations in D3 to satisfy requirement 3.
+Lastly, the logic will interact with the API in pulling the information that the user requests to satisfy requirement 4.
+
+We will color the areas/states on the map according to their weather. We wil propably need to use the ArcGIS web service to modify the map.
+Also, we wish to make the website more helpful and interactive by allowing the user to view information about the area they are 
+interested in visiting such as things to do.
