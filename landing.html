@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<!-- This is our first landing page, this page request data from users.
+TODO: The result should show underneath of search or pops a new page. -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="help.css">
+    <title>TempuTrip</title>
+</head>
+<body>
+
+<div class="inthe">
+
+<header>
+    <h1 class="center"> Welcome to TempuTrip! </h1>
+    <p class="center"><b>The best place to go to find out where to vacation!</b></p>
+</header>
+<div class="center">
+    <p class="center">Simply pick an area and time and we'll tell you where the best place based on weather will be to go.</p>
+    <form>
+
+        <p>When would you like to travel?</p>
+        <label for="start">Start Date:</label>
+        <input id="start" name= "start" type = "date">
+
+        <label for="end">End Date:</label>
+        <input id="end" name= "end" type = "date"><br/>
+
+        <br/>
+
+        <img src="images/weather_us_map.jpg" alt="Map" height="206px" width="362px"><br />
+
+        <p>Where would you like to travel?
+
+        <input type="radio" name="location" value="Eastern"> Eastern
+        <input type="radio" name="location" value="Middle"> Middle
+        <input type="radio" name="location" value="Western"> Western</p><br>
+        <label for="place">Place:</label>
+        <input id="place" name= "place" type = "text">
+
+        <input type="submit">
+
+        <br/>
+
+        <p>Here are the weather options we have:</p>
+        <table align="center" border="1">
+            <tr>
+                <td>Temperature</td>
+                <td>Wind Speed</td>
+            </tr>
+            <tr>
+                <td>Distance</td>
+                <td>Humidity</td>
+            </tr>
+        </table>
+        <br>
+    </form>
+</div>
+
+<footer>
+    <address>
+        <p class="center">This site is developed by
+        <a href="mailto:sborghei@gmu.edu">Sara Borghei</a>
+            and
+        <a href="mailto:ssaad2@gmu.edu">Sara Saad</a>
+        </p>
+    </address>
+</footer>
+
+</div>
+
+</body>
+</html>
