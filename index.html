@@ -14,23 +14,25 @@
 <a href="http://jquery.com/">jQuery</a>
 <script src="jquery-3.1.0.js"></script>
 <script>
- 
+
+/* 
 //take to landing isntead of signing in
 $( document ).ready(function() {
- $( "a.pager-link" ).click(function( event ) {
+ $( "a" ).click(function( event ) {
   alert( "Sign up for TempuTrip!" );
   $(location).attr('href', 'Landing.html')
   //event.preventDefault();
  });
 });
+*/
 
-/*
+
 $(document).ready( function() {
     $('a.pager-link').click( function() {
         var page = $(this).attr('href').split(/\?/)[1];
         $.ajax({
             type: 'POST',
-            url: '/path-to-service',
+            url: 'Landing.html',
             data: page,
             success: function(content) {
                $('#myTable').html(content);  // replace
@@ -39,7 +41,7 @@ $(document).ready( function() {
         return false; // to stop link
     });
 });
-*/
+
  
 </script>
 
