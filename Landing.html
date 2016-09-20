@@ -16,8 +16,8 @@ TODO: The result should show underneath of search or pops a new page. -->
 $(document).ready(function(){
     $("button").click(function(){
         alert("Hi!")
-        var Result = $(this).attr("id");
-        var oldMap = $("#full-size").attr('class');
+        var Result = $(this).attr("res");
+        var oldMap = $("#full-size").attr('base');
         $("#full-size").fadeOut(function() {
             $("#full-size").removeClass(oldMap).addClass(Result).fadeIn('slow');
         })
