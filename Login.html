@@ -1,14 +1,64 @@
-<h1>Welcome to TempuTrip!</h1>
-Please provide your email to get started:
-<form>
-<input type="email" name="user_email" placeholder="abc@cdf.com">
-<input type="submit" value="Submit">
-</form>
-Please create a password that is at least 8 characters long:
-<form>
-  <input type="password" name="password" pattern=".{8,}">
-  <input type="submit">
-</form>
+<!DOCTYPE html>
+
+<!-- The purpose of this page is to login to the website to access services
+TODO: We should provide 2 services, register and forgot password. -->
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="help.css">
+    <title>TempuTrip</title>
+</head>
+<body class="background">
+
+<a href="http://jquery.com/">jQuery</a>
+<script src="jquery-3.1.0.js"></script>
+
+<button onclick="goBack()">Go Back</button>
+
+<script>
+
+function goBack() {
+    window.history.back();
+}
+
+</script>
+
+<div class="inthe">
+
+
+<header>
+    <h1 class="center"> Welcome to TempuTrip! </h1>
+    <p class="center"><b>The best place to go to find out where to vacation!</b></p>
+</header>
+<div class="center">
+    <p class="center">Simply pick an area and time and we'll tell you where the best place based on weather will be to go.</p>
+    <form action="landing.html">
+
+        <label for="email">Your email address:</label>
+        <input id="email" name= "email" type = "email" placeholder="abc@cdf.com">
+
+        <br/>
+
+        <label for="pass">Password:</label>
+        <input id="pass" name= "pass" type = "password">
+
+        <input type="submit" value="login">
+
+    </form>
+</div>
+
 <footer>
-  <p>Project by: Sara Saad and Sara Borghei</p>
+    <address>
+        <p class="center">This site is developed by
+        <a href="mailto:sborghei@gmu.edu">Sara Borghei</a>
+            and
+        <a href="mailto:ssaad2@gmu.edu">Sara Saad</a>
+        </p>
+    </address>
 </footer>
+
+</div>
+
+</body>
+</html>

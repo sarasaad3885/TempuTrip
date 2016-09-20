@@ -1,2 +1,87 @@
-<h1>Hello!</h1>
-<h2>Welcome to TempuTrip!</h2>
+<!DOCTYPE html>
+
+<!-- This page is a starting page. It will ask user to login.
+ TODO: we should show some general info from weather channel. -->
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="help.css">
+    <title>TempuTrip</title>
+
+    <script src="jquery-3.1.0.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            $("form").submit(function () {
+                var val = $("input[type=submit][clicked=true]").val();
+                // DO WORK
+            });
+            $("form input[type=submit]").click(function () {
+                $("input[type=submit]", $(this).parents("form")).removeAttr("clicked");
+                $(this).attr("clicked", "true");
+            });
+        });
+
+        function goBack() {
+            $("#login").hide().css("visibility", "hidden");
+            $("#home").show().css("visibility", "visible");
+        }
+
+        function goLogin(){
+            $("#home").hide().css("visibility", "hidden");
+            $("#login").show().css("visibility", "visible");
+        }
+
+    </script>
+
+
+</head>
+<body>
+
+<button onclick="goBack()" id="back">Go Back</button>
+
+<div class="inthe">
+
+    <header>
+        <h1 class="center"> Welcome to TempuTrip! </h1>
+        <p class="center"><b>The best place to go to find out where to vacation!</b></p>
+    </header>
+    <div class="center" id="home">
+        <p>Please login</p>
+        <!--<a href="#" id="next"><img src="image/login.png" alt="login" class="enlargeimage"></a>-->
+        <button onclick="goLogin()" id="next"><img src="image/login.png" alt="login" class="enlargeimage"></button>
+    </div>
+
+    <div class="center" id="login">
+        <p class="center">Simply pick an area and time and we'll tell you where the best place based on weather will be
+            to go.</p>
+        <form action="landing.html">
+
+            <label for="email">Your email address:</label>
+            <input id="email" name="email" type="email" placeholder="abc@cdf.com">
+
+            <br/>
+
+            <label for="pass">Password:</label>
+            <input id="pass" name="pass" type="password">
+
+            <input type="submit" value="login">
+
+        </form>
+    </div>
+
+    <footer>
+        <address>
+            <p class="center">This site is developed by
+                <a href="mailto:sborghei@gmu.edu">Sara Borghei</a>
+                and
+                <a href="mailto:ssaad2@gmu.edu">Sara Saad</a>
+            </p>
+        </address>
+    </footer>
+
+</div>
+
+</body>
+</html>
