@@ -17,12 +17,18 @@ TODO: The result should show underneath of search or pops a new page. -->
 <a href="http://jquery.com/">jQuery</a>
 <script src="jquery-3.1.0.js"></script>
 
-<button>Show it</button>
+<button>Show My Results!</button>
 <p style="display: none">Hello  2</p>
+
+<img id="Results_Example" src="image/res.png">
+<a id="showImage">Show image</a>
  
 <script>
 $( "button" ).click(function() {
   $( "p" ).show( "slow" );
+  document.getElementById("showImage").onclick = function() {
+    document.getElementById("Results_Example").style.visibility = "visible";
+}
 });
 </script>
 
