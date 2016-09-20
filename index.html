@@ -17,13 +17,29 @@
  
 //take to landing isntead of signing in
 $( document ).ready(function() {
- $( "a" ).click(function( event ) {
+ $( "a.pager-link" ).click(function( event ) {
   alert( "Sign up for TempuTrip!" );
   $(location).attr('href', 'Landing.html')
   //event.preventDefault();
  });
 });
 
+/*
+$(document).ready( function() {
+    $('a.pager-link').click( function() {
+        var page = $(this).attr('href').split(/\?/)[1];
+        $.ajax({
+            type: 'POST',
+            url: '/path-to-service',
+            data: page,
+            success: function(content) {
+               $('#myTable').html(content);  // replace
+            }
+        });
+        return false; // to stop link
+    });
+});
+*/
  
 </script>
 
