@@ -12,7 +12,19 @@ TODO: The result should show underneath of search or pops a new page. -->
 </head>
 <body>
     
-        
+<a href="http://jquery.com/">jQuery</a>
+<script src="jquery-3.1.0.js"></script>
+
+<a id="show_image">Show My Results!</a>
+<img id="my_images" style="display:none" src="image/res.png" alt="Map" height="206px" width="362px"><br />
+
+<script>
+   $(document).ready(function(){
+      $('#show_image').on("click", function(){
+         $('#my_images').show('slow');
+      });
+   });
+</script>        
 
 
 <div class="inthe">
@@ -47,20 +59,6 @@ TODO: The result should show underneath of search or pops a new page. -->
         <input id="place" name= "place" type = "text">
 
         <button>Submit</button>
-        
-        <a href="http://jquery.com/">jQuery</a>
-<script src="jquery-3.1.0.js"></script>
-
-<a id="show_image">Show My Results!</a>
-<img id="my_images" style="display:none" src="image/res.png" alt="Map" height="206px" width="362px"><br />
-
-<script>
-   $(document).ready(function(){
-      $('#show_image').on("click", function(){
-         $('#my_images').show('slow');
-      });
-   });
-</script>
 
         <br/>
 
