@@ -9,16 +9,26 @@ TODO: The result should show underneath of search or pops a new page. -->
     <title>TempuTrip</title>
 </head>
 <body>
-   
     
 <a href="http://jquery.com/">jQuery</a>
 <script src="jquery-3.1.0.js"></script>
 <script>
 
+
 $(document).ready(function(){
     $("button").click(function(){
-        window.location = "www.google.com" + this.id;
-        //$("#test").hide();
+         $("a#image").click(function() {
+        var actualDivDisplay = $("div.showimagediv").css("display");
+        var newDivDisplay = "";
+
+        if (actualDivDisplay == "none") {
+            newDivDisplay = "block";
+        } else {
+            newDivDisplay = "none";
+        }
+
+        $("div.showimagediv").css("display", newDivDisplay);
+    });
     });
 });
 
@@ -44,11 +54,13 @@ $(document).ready(function(){
         <input id="end" name= "end" type = "date"><br/>
 
         <br/>
-        
 
+        <a href="#" id="image">
         <img src="image/weather_us_map.jpg" alt="Map" height="206px" width="362px"><br />
-
-        <p id="test">Where would you like to travel?
+        </a>
+        
+        
+        <p>Where would you like to travel?
 
         <input type="radio" name="location" value="Eastern"> Eastern
         <input type="radio" name="location" value="Middle"> Middle
