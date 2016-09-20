@@ -15,7 +15,7 @@
 <script src="jquery-3.1.0.js"></script>
 <script>
 
-/* 
+ /*
 //take to landing isntead of signing in
 $( document ).ready(function() {
  $( "a" ).click(function( event ) {
@@ -23,24 +23,19 @@ $( document ).ready(function() {
   $(location).attr('href', 'Landing.html')
   //event.preventDefault();
  });
-});
-*/
+}); */
 
-
-$(document).ready( function() {
-    $('a.pager-link').click( function() {
-        var page = $(this).attr('href').split(/\?/)[1];
-        $.ajax({
-            type: 'POST',
-            url: 'Landing.html',
-            data: page,
-            success: function(content) {
-               $('#myTable').html(content);  // replace
-            }
-        });
-        return false; // to stop link
+$(document).ready(function() {
+    $("form").submit(function() { 
+        var val = $("input[type=submit][clicked=true]").val();
+        // DO WORK
+    });
+    $("form input[type=submit]").click(function() {
+        $("input[type=submit]", $(this).parents("form")).removeAttr("clicked");
+        $(this).attr("clicked", "true");
     });
 });
+
 
  
 </script>
