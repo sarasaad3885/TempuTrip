@@ -18,12 +18,9 @@ TODO: We should provide 2 services, register and forgot password. -->
 
 <script>
 
-$(document).ready(function(){
-	$('a.back').click(function(){
-		parent.history.back();
-		return false;
-	});
-});
+function goBack() {
+    window.history.back();
+}
 
 </script>
 
