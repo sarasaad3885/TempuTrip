@@ -15,20 +15,10 @@
 <script src="jquery-3.1.0.js"></script>
 <script>
 
- /*
-//take to landing isntead of signing in
-$( document ).ready(function() {
- $( "a" ).click(function( event ) {
-  alert( "Sign up for TempuTrip!" );
-  $(location).attr('href', 'Landing.html')
-  //event.preventDefault();
- });
-}); */
 
 $(document).ready(function() {
     $("form").submit(function() { 
         var val = $("input[type=submit][clicked=true]").val();
-        // DO WORK
     });
     $("form input[type=submit]").click(function() {
         $("input[type=submit]", $(this).parents("form")).removeAttr("clicked");
