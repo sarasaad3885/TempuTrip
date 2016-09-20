@@ -7,8 +7,6 @@ TODO: The result should show underneath of search or pops a new page. -->
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="help.css">
     <title>TempuTrip</title>
-</head>
-<body>
     
 <a href="http://jquery.com/">jQuery</a>
 <script src="jquery-3.1.0.js"></script>
@@ -17,23 +15,23 @@ TODO: The result should show underneath of search or pops a new page. -->
 
 $(document).ready(function(){
     $("button").click(function(){
-         $("a#image").click(function() {
-        var actualDivDisplay = $("div.showimagediv").css("display");
-        var newDivDisplay = "";
-
-        if (actualDivDisplay == "none") {
-            newDivDisplay = "block";
-        } else {
-            newDivDisplay = "none";
-        }
-
-        $("div.showimagediv").css("display", newDivDisplay);
-    });
+        alert("Hi!")
+        var Result = $(this).attr("id");
+        var oldMap = $("#full-size").attr('class');
+        $("#full-size").fadeOut(function() {
+            $("#full-size").removeClass(oldMap).addClass(Result).fadeIn('slow');
+        })
     });
 });
 
 </script>
+</head>
+<body>
 
+<div id="gallery">
+    <img id="base" src="image/weather_us_map.jpg" alt="Map" height="206px" width="362px"><br /> 
+    <img id="res" src="image/weather_us_map.jpg" alt="Map" height="206px" width="362px"><br />
+</div>
 
 <div class="inthe">
 
@@ -55,9 +53,7 @@ $(document).ready(function(){
 
         <br/>
 
-        <a href="#" id="image">
         <img src="image/weather_us_map.jpg" alt="Map" height="206px" width="362px"><br />
-        </a>
         
         
         <p>Where would you like to travel?
