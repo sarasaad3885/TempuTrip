@@ -15,9 +15,11 @@
 <script src="jquery-3.1.0.js"></script>
 <script>
  
+//take to landing isntead of signing in
 $( document ).ready(function() {
  $( "a" ).click(function( event ) {
-  alert( "Thanks for visiting!" );
+  alert( "Sign up for TempuTrip!" );
+  $(location).attr('href', 'Landing.html')
   event.preventDefault();
  });
 });
