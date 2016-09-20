@@ -14,9 +14,10 @@ TODO: The result should show underneath of search or pops a new page. -->
 <script src="jquery-3.1.0.js"></script>
 <script>
 
-var hiddenBox = $( "#banner-message" );
-$( "#button-container button" ).on( "click", function( event ) {
-  hiddenBox.show();
+$(document).ready(function(){
+    $("button").click(function(){
+        $("#test").show();
+    });
 });
 
 </script>
