@@ -17,13 +17,21 @@ TODO: The result should show underneath of search or pops a new page. -->
 <a href="http://jquery.com/">jQuery</a>
 <script src="jquery-3.1.0.js"></script>
 
-<button>Show My Results!</button>
-<p style="display: none">Hello  2</p>
+//<button>Show My Results!</button>
+//<p style="display: none">Hello  2</p>
 
-<img id="Results_Example" src="image/res.png">
-<a id="showImage">Show image</a>
+<a id="show_image">Show Image</a>
+<img src="image/res.png" alt="Map" height="206px" width="362px"><br />
 
- 
+<script>
+   $(document).ready(function(){
+      $('#show_image').on("click", function(){
+         $('#my_images').show('slow');
+      });
+   });
+</script>
+
+/* 
 <script>
 $( "button" ).click(function() {
   $( "p" ).show( "slow" );
@@ -32,6 +40,7 @@ $( "button" ).click(function() {
 }
 });
 </script>
+*/
 
 <div class="inthe">
 
