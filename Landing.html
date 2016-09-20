@@ -7,13 +7,18 @@ TODO: The result should show underneath of search or pops a new page. -->
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="help.css">
     <title>TempuTrip</title>
+
+
 </head>
 <body>
-
+    
+<a href="http://jquery.com/">jQuery</a>
+<script src="jquery-3.1.0.js"></script>
 
 <div class="inthe">
 
 <header>
+
     <h1 class="center"> Welcome to TempuTrip! </h1>
     <p class="center"><b>The <mark>best</mark> place to go to find out where to vacation!</b></p>
 </header>
@@ -29,10 +34,10 @@ TODO: The result should show underneath of search or pops a new page. -->
         <input id="end" name= "end" type = "date"><br/>
 
         <br/>
-        
 
         <img src="image/weather_us_map.jpg" alt="Map" height="206px" width="362px"><br />
-
+        
+        
         <p>Where would you like to travel?
 
         <input type="radio" name="location" value="Eastern"> Eastern
@@ -41,7 +46,17 @@ TODO: The result should show underneath of search or pops a new page. -->
         <label for="place">Place:</label>
         <input id="place" name= "place" type = "text">
 
-        <input type="submit">
+        
+        <a id="show_image">Show My Results!</a>
+        <img id="my_images" style="display:none" src="image/res.png" alt="Map" height="206px" width="362px"><br />
+
+        <script>
+           $(document).ready(function(){
+              $('#show_image').on("click", function(){
+             $('#my_images').show('slow');
+              });
+           });
+        </script>   
 
         <br/>
 
