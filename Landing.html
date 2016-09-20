@@ -12,26 +12,20 @@ TODO: The result should show underneath of search or pops a new page. -->
 <script src="jquery-3.1.0.js"></script>
 <script>
 
-
-$(document).ready(function(){
-    $("button").click(function(){
-        alert("Hi!")
-        var Result = $(this).attr("res");
-        var oldMap = $("#full-size").attr('base');
-        $("#full-size").fadeOut(function() {
-            $("#full-size").removeClass(oldMap).addClass(Result).fadeIn('slow');
-        })
-    });
+<button>Show it</button>
+<p style="display: none">Hello  2</p>
+ 
+<script>
+$( "button" ).click(function() {
+  $( "p" ).show( "slow" );
 });
+</script>
+
+
 
 </script>
 </head>
 <body>
-
-<div id="gallery">
-    <img id="base" src="image/weather_us_map.jpg" alt="Map" height="206px" width="362px"><br /> 
-    <img id="res" src="image/res.png" alt="Map" height="206px" width="362px"><br />
-</div>
 
 <div class="inthe">
 
