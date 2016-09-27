@@ -4,7 +4,7 @@
 TODO: We should provide 2 services, register and forgot password. -->
 
 
-<html lang="en">
+<html lang="en" ng-app="myApp">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="help.css">
@@ -19,30 +19,25 @@ TODO: We should provide 2 services, register and forgot password. -->
         }
 </style>
 
+    
+    
 </head>
-
-<script>
  
-$scope.SignIn = function(event) {
-    event.preventDefault();  // To prevent form refresh
-    var username = $scope.user.email;
-    var password = $scope.user.password;
-     
-    loginObj.$login('password', {
-            email: username,
-            password: password
-        })
-        .then(function(user) {
-            // Success callback
-            console.log('Authentication successful');
-        }, function(error) {
-            // Failure callback
-            console.log('Authentication failure');
-        });
-}
-
- </script>
  
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="icon" href="http://getbootstrap.com/favicon.ico">
+ 
+    <title>AngularJS & Firebase Web App</title>
+ 
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://getbootstrap.com/examples/signin/signin.css" rel="stylesheet">
+ 
+    <link href="justified-nav.css" rel="stylesheet">
+ 
+</head>
+    
+    
 <body ng-controller="HomeCtrl">
  
     <div class="container">
