@@ -50,6 +50,7 @@
 
 </head>
 <body>
+ var myFirebaseRef = new Firebase("https://TempuTrip.firebaseio.com/");
 var messageListRef = new Firebase('https://TempuTrip.firebaseio.com/message_list');
 var newMessageRef = messageListRef.push();
     newMessageRef.set({ 'user_id': 'fred', 'text': 'Yabba Dabba Doo!' });
@@ -61,36 +62,8 @@ var path = newMessageRef.toString();
     messageListRef.push({ 'user_id': 'fred', 'text': 'Yabba Dabba Doo!' });
 // Same effect as the previous example, but we've combined the push() and the set().
  
- var myFirebaseRef = new Firebase("https://TempuTrip.firebaseio.com/");
- myFirebaseRef.set({
-  title: "Hello World!",
-  author: "Firebase",
-  location: {
-    city: "San Francisco",
-    state: "California",
-    zip: 94103
-  }
-});
- myFirebaseRef.child("location/city").on("value", function(snapshot) {
-  alert(snapshot.val());  // Alerts "San Francisco"
-});
- myFirebaseRef.createUser({
-  email    : "bobtony@firebase.com",
-  password : "correcthorsebatterystaple"
-}, function(error, userData) {
-  if (error) {
-    console.log("Error creating user:", error);
-  } else {
-    console.log("Successfully created user account with uid:", userData.uid);
-  }
-});
- {
-  "rules": {
-    ".read": true,
-    ".write": "auth.uid === 'admin'",
-    ".validate": "newData.isString() && newData.val().length < 500"
-  }
-}
+
+
  
 <button onclick="goBack()" id="back">Go Back</button>
 
