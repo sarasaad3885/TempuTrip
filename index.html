@@ -9,43 +9,77 @@
     <link rel="stylesheet" type="text/css" href="help.css">
     <title>TempuTrip</title>
 
-
-<script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
-
- </head>
- 
-<body>
-<div id="todoItems"></div>
- 
- <br/><br/>
-<div id="sentiments"></div>
- 
-<script>
-  // Initialize Firebase
- "use strict";
- 
-  var config = {
-    apiKey: "AIzaSyAXfiPb7lxRd85RpS5WYIIxzwvHvO_ZTOE",
-    authDomain: "temputrip.firebaseapp.com",
-    databaseURL: "https://TempuTrip.firebaseio.com",
-    storageBucket: "temputrip.appspot.com",
-    messagingSenderId: "423687763023"
-  };
-  firebase.initializeApp(config);
- 
- 
-</script>
+    <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
 
     <script src="jquery-3.1.0.js"></script>
-    <script>
 
+    <script>
+        // Initialize Firebase
+        "use strict";
+        var config = {
+            apiKey: "AIzaSyAXfiPb7lxRd85RpS5WYIIxzwvHvO_ZTOE",
+            authDomain: "temputrip.firebaseapp.com",
+            databaseURL: "https://TempuTrip.firebaseio.com",
+            storageBucket: "temputrip.appspot.com",
+            messagingSenderId: "423687763023"
+        };
+
+        firebase.initializeApp(config);
+
+        var todosRef = firebase.database().ref('todos');
+
+        firebase.database().ref('users/tlatoza').set({
+            username: "Thomas LaToza",
+            email: "tlatoza@gmu.edu",
+            profile_picture: "profilePic.jpg"
+        });
+
+        var nextIndex = 0;
+
+        todosRef.on('child_added', function (data) {
+            createItem(data.val().text, data.key);
+        });
+
+        todosRef.on('child_changed', function (data) {
+            $('div[data-index="' + data.key + '"] input').val(data.val().text);
+        });
+
+        todosRef.on('child_removed', function (data) {
+            $('div[data-index="' + data.key + '"]').remove();
+        });
+
+        $('#new').click(function () {
+            todosRef.push({'text': ""});
+        });
+
+        function createItem(value, key) {
+            $('#todoItems').append(
+                    '<div class="todoItem" data-index="' + key + '"><input type="text" onchange="itemChanged(this)" value="'
+                    + value + '"><button onclick="deleteItem(this.parentElement)">&#x2716;</button></div>'
+            );
+        }
+
+        function deleteItem(inputDiv) {
+            todosRef.child(inputDiv.dataset.index).remove();
+        }
+
+        function itemChanged(inputElem) {
+            var index = inputElem.parentElement.dataset.index;
+            todosRef.child(inputElem.parentElement.dataset.index).set({'text': inputElem.value});
+        }
+    </script>
+
+    <script>
         $(document).ready(function () {
             $("form").submit(function () {
                 var val = $("input[type=submit][clicked=true]").val();
+                $(location).attr('href', 'Landing.html');
             });
+
             $("form input[type=submit]").click(function () {
                 $("input[type=submit]", $(this).parents("form")).removeAttr("clicked");
                 $(this).attr("clicked", "true");
+                $(location).attr('href', 'Landing.html');
             });
         });
 
@@ -54,19 +88,23 @@
             $("#home").show().css("visibility", "visible");
         }
 
-        function goLogin(){
+        function goLogin() {
             $("#home").hide().css("visibility", "hidden");
             $("#login").show().css("visibility", "visible");
         }
 
     </script>
- 
- <script src="home/home.js"></script>
 
+</head>
 
+<body>
 
- </body>
- 
+<div id="todoItems"></div>
+
+<br/><br/>
+
+<div id="sentiments"></div>
+
 <button onclick="goBack()" id="back">Go Back</button>
 
 <div class="inthe">
@@ -75,6 +113,7 @@
         <h1 class="center"> Welcome to TempuTrip! </h1>
         <p class="center"><b>The best place to go to find out where to vacation!</b></p>
     </header>
+
     <div class="center" id="home">
         <p>Please login</p>
         <!--<a href="#" id="next"><img src="image/login.png" alt="login" class="enlargeimage"></a>-->
@@ -84,7 +123,7 @@
     <div class="center" id="login">
         <p class="center">Simply pick an area and time and we'll tell you where the best place based on weather will be
             to go.</p>
-        <form action="landing.html">
+        <form> <!--  action="landing.html" -->
 
             <label for="email">Your email address:</label>
             <input id="email" name="email" type="email" placeholder="abc@cdf.com">
@@ -112,4 +151,5 @@
 </div>
 
 </body>
+
 </html>
