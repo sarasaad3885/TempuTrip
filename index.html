@@ -120,18 +120,19 @@
       $("#auth").click(function() {
             var ref = new Firebase("https://temputrip.firebaseio.com");
 
-        ref.authWithOAuthPopup("google", function(error, authData) {
-            if (error) {
-                console.log("Login Failed!", error);
-                console.log(error);
-            } else {
-                console.log("Authenticated successfully with payload:", authData);
-            }
-        }, {
-            "scope": "email, password"
-        });
+       // Create a callback which logs the current auth state
+function authDataCallback(authData) {
+  if (authData) {
+    console.log("User " + authData.uid + " is logged in with " + authData.provider);
+  } else {
+    console.log("User is logged out");
+  }
+}
 
-        return false;
+// Register the callback to be fired every time auth state changes
+var ref = new Firebase("https://temputrip.firebaseio.com");
+ref.onAuth(authDataCallback);
+       
       });
     
      </script>
