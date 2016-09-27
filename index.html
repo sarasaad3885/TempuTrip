@@ -62,7 +62,26 @@ var path = newMessageRef.toString();
     messageListRef.push({ 'user_id': 'fred', 'text': 'Yabba Dabba Doo!' });
 // Same effect as the previous example, but we've combined the push() and the set().
  
-
+var ref = new Firebase("https://docs-examples.firebaseio.com/web/saving-data/fireblog");
+ var usersRef = ref.child("users");
+usersRef.set({
+  alanisawesome: {
+    date_of_birth: "June 23, 1912",
+    full_name: "Alan Turing"
+  },
+  gracehop: {
+    date_of_birth: "December 9, 1906",
+    full_name: "Grace Hopper"
+  }
+});
+ usersRef.child("alanisawesome").set({
+  date_of_birth: "June 23, 1912",
+  full_name: "Alan Turing"
+});
+usersRef.child("gracehop").set({
+  date_of_birth: "December 9, 1906",
+  full_name: "Grace Hopper"
+});
 
  
 <button onclick="goBack()" id="back">Go Back</button>
