@@ -26,10 +26,33 @@
 
         firebase.initializeApp(config);
 
+        var ref = new Firebase("https://temputrip.firebaseio.com");
+     
+     ref.createUser({
+  email: "ssaad2@gmu.edu",
+  password: "trial"
+}, function(error, userData) {
+  if (error) {
+    switch (error.code) {
+      case "EMAIL_TAKEN":
+        console.log("The new user account cannot be created because the email is already in use.");
+        break;
+      case "INVALID_EMAIL":
+        console.log("The specified email is not a valid email.");
+        break;
+      default:
+        console.log("Error creating user:", error);
+    }
+  } else {
+    console.log("Successfully created user account with uid:", userData.uid);
+  }
+});
+     
+    
         var todosRef = firebase.database().ref('todos');
 
-        firebase.database().ref('users/sarasaad3885').set({
-            username: "Sara Saada",
+        firebase.database().ref('users/ssaad').set({
+            username: "sarasaad",
             email: "ssaad2@gmu.edu",
         });
 
