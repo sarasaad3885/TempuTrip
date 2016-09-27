@@ -33,42 +33,7 @@
   };
   firebase.initializeApp(config);
  
- var todosRef = firebase.database().ref('todos');
-    firebase.database().ref('users/tlatoza').set({
-        username: "Thomas LaToza",
-        email: "tlatoza@gmu.edu",
-        profile_picture : "profilePic.jpg"
-    });
-    var nextIndex = 0;
-    todosRef.on('child_added', function(data) {
-        createItem(data.val().text, data.key);
-    });
-    todosRef.on('child_changed', function(data) {
-        $('div[data-index="' + data.key + '"] input').val(data.val().text);
-    });
-    todosRef.on('child_removed', function(data) {
-        $('div[data-index="' + data.key + '"]').remove();
-    });
-    $('#new').click(function()
-    {
-        todosRef.push({ 'text': ""});
-    });
-    function createItem(value, key)
-    {
-        $('#todoItems').append(
-                '<div class="todoItem" data-index="' + key+ '"><input type="text" onchange="itemChanged(this)" value="'
-                + value + '"><button onclick="deleteItem(this.parentElement)">&#x2716;</button></div>'
-        );
-    }
-    function deleteItem(inputDiv)
-    {
-        todosRef.child(inputDiv.dataset.index).remove();
-    }
-    function itemChanged(inputElem)
-    {
-        var index = inputElem.parentElement.dataset.index;
-        todosRef.child(inputElem.parentElement.dataset.index).set({ 'text': inputElem.value });
-    }
+ 
 </script>
 
     <script src="jquery-3.1.0.js"></script>
