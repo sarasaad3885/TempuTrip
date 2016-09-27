@@ -104,7 +104,7 @@
             <input type="submit" value="login">
              
         <div id="todoItems"></div>
-    <button id="submit">Submit2</button>
+    <button id="submit">Login</button>
     <br/><br/>
     <div id="sentiments"></div>  
 
@@ -116,39 +116,12 @@
         "use strict";
         $('#submit').click(function()
         {
-         var ref = new Firebase("https://temputrip.firebaseio.com");
-ref.authWithOAuthPopup("facebook", function(error, authData) {
-  if (error) {
-    console.log("Login Failed!", error);
-  } else {
-    console.log("Authenticated successfully with payload:", authData);
-  }
-});
             $('#todoItems').append(
                 '<div class="todoItem"><input type="text"/><button onclick="deleteItem(this.parentElement)">&#x2716;</button></div>'
             );
         });
-          
-          
-        function deleteItem(divElem)
-        {
-            divElem.parentElement.removeChild(divElem);
-        }
-          
-          
-        $('#save').click(function()
-        {
-            var todoItems = [];
-            $('.todoItem input').each(function()
-            {
-                todoItems.push($(this).val());
-            });
-            $.post("http://127.0.0.1:4000",  { todoItems: todoItems } )
-                .done(function(data)
-                {
-                    $('#sentiments').text(data.sentiments);
-                });
-        });
+                  
+  
     </script>
          
       
