@@ -66,43 +66,7 @@ totalVisitors.on('value', logVisitorCount);
 
 </script>
     
-<script>
 
-    // now I can use Firebase
-
-        var usersRef = ref.child("users");
-usersRef.set({
-  alanisawesome: {
-    date_of_birth: "June 23, 1912",
-    full_name: "Alan Turing"
-  },
-  gracehop: {
-    date_of_birth: "December 9, 1906",
-    full_name: "Grace Hopper"
-  }
-});
-        usersRef.child("alanisawesome").set({
-  date_of_birth: "June 23, 1912",
-  full_name: "Alan Turing"
-});
-usersRef.child("gracehop").set({
-  date_of_birth: "December 9, 1906",
-  full_name: "Grace Hopper"
-});
-        dataRef.set("I'm writing data", function(error) {
-  if (error) {
-    alert("Data could not be saved." + error);
-  } else {
-    alert("Data saved successfully.");
-  }
-});
-        // This is equivalent to the calls to push().set(...) above
-  postsRef.push({
-    author: "gracehop",
-    title: "Announcing COBOL, a New Programming Language"
-  });
-
-    </script>
 
 <div class="inthe">
 
