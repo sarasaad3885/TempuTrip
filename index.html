@@ -28,12 +28,12 @@
 
         var todosRef = firebase.database().ref('todos');
 
-        firebase.database().ref('users/tlatoza').set({
-            username: "Thomas LaToza",
-            email: "tlatoza@gmu.edu",
-            profile_picture: "profilePic.jpg"
+        firebase.database().ref('users/sarasaad3885').set({
+            username: "Sara Saada",
+            email: "ssaad2@gmu.edu",
         });
 
+     //Trying to play with the professor's example code 
         var nextIndex = 0;
 
         todosRef.on('child_added', function (data) {
@@ -134,6 +134,7 @@
             <input id="pass" name="pass" type="password">
 
             <input type="submit" value="login">
+            <button onclick="goLanding()" id="next"><img src="image/landing.png" alt="login" class="enlargeimage"></button>
 
         </form>
     </div>
