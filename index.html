@@ -9,16 +9,44 @@
     <link rel="stylesheet" type="text/css" href="help.css">
     <title>TempuTrip</title>
 
-    <script src="jquery-3.1.0.js"></script>
-    <script>
+    <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
 
+    <script src="jquery-3.1.0.js"></script>
+
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyAXfiPb7lxRd85RpS5WYIIxzwvHvO_ZTOE",
+            authDomain: "temputrip.firebaseapp.com",
+            databaseURL: "https://TempuTrip.firebaseio.com",
+            storageBucket: "temputrip.appspot.com",
+            messagingSenderId: "423687763023"
+        };
+
+        firebase.initializeApp(config);
+
+        var ref = new Firebase("https://temputrip.firebaseio.com");
+     
+    
+        var todosRef = firebase.database().ref('todos');
+
+        firebase.database().ref('users/ssaad').set({
+            username: "sarasaad",
+            email: "ssaad2@gmu.edu",
+        });
+ </script>
+
+    <script>
         $(document).ready(function () {
             $("form").submit(function () {
                 var val = $("input[type=submit][clicked=true]").val();
+                $(location).attr('href', 'Landing.html');
             });
+
             $("form input[type=submit]").click(function () {
                 $("input[type=submit]", $(this).parents("form")).removeAttr("clicked");
                 $(this).attr("clicked", "true");
+                $(location).attr('href', 'Landing.html');
             });
         });
 
@@ -27,15 +55,24 @@
             $("#home").show().css("visibility", "visible");
         }
 
-        function goLogin(){
+        function goLogin() {
             $("#home").hide().css("visibility", "hidden");
             $("#login").show().css("visibility", "visible");
         }
+     
+
 
     </script>
 
 </head>
+
 <body>
+
+<div id="todoItems"></div>
+
+<br/><br/>
+
+<div id="sentiments"></div>
 
 <button onclick="goBack()" id="back">Go Back</button>
 
@@ -45,6 +82,7 @@
         <h1 class="center"> Welcome to TempuTrip! </h1>
         <p class="center"><b>The best place to go to find out where to vacation!</b></p>
     </header>
+
     <div class="center" id="home">
         <p>Please login</p>
         <!--<a href="#" id="next"><img src="image/login.png" alt="login" class="enlargeimage"></a>-->
@@ -54,7 +92,7 @@
     <div class="center" id="login">
         <p class="center">Simply pick an area and time and we'll tell you where the best place based on weather will be
             to go.</p>
-        <form action="landing.html">
+        <form action = "Landing.html"> <!--  action="landing.html" -->
 
             <label for="email">Your email address:</label>
             <input id="email" name="email" type="email" placeholder="abc@cdf.com">
@@ -63,10 +101,42 @@
 
             <label for="pass">Password:</label>
             <input id="pass" name="pass" type="password">
+             
+            <div id="todoItems"></div>
+            <button id="#auth">Login</button>
+            <br/><br/>
+            <div id="sentiments"></div>  
 
-            <input type="submit" value="login">
-
+            
         </form>
+     
+   <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
+
+    <script src="jquery-3.1.0.js"></script>
+         
+   <script>
+    
+
+      $("#auth").click(function() {
+            var ref = new Firebase("https://temputrip.firebaseio.com");
+
+       // Create a callback which logs the current auth state
+function authDataCallback(authData) {
+  if (authData) {
+    console.log("User " + authData.uid + " is logged in with " + authData.provider);
+  } else {
+    console.log("User is logged out");
+  }
+}
+
+// Register the callback to be fired every time auth state changes
+var ref = new Firebase("https://temputrip.firebaseio.com");
+ref.onAuth(authDataCallback);
+       
+      });
+    
+     </script>
+     
     </div>
 
     <footer>
@@ -82,4 +152,5 @@
 </div>
 
 </body>
+ 
 </html>

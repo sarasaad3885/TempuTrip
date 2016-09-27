@@ -4,7 +4,7 @@
 TODO: We should provide 2 services, register and forgot password. -->
 
 
-<html lang="en">
+<html lang="en" ng-app="myApp">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="help.css">
@@ -19,8 +19,9 @@ TODO: We should provide 2 services, register and forgot password. -->
         }
 </style>
 
+    
 </head>
-
+ 
 <body>
     <div id="lotOfPages">
     
@@ -39,6 +40,7 @@ TODO: We should provide 2 services, register and forgot password. -->
 
 <script>
 $(document).ready(function (e) {
+totalVisitors.on('value', logVisitorCount);
 
     function showView(viewName) {
             $('.view').hide();
@@ -60,6 +62,105 @@ $(document).ready(function (e) {
 
 </script>
 
+<script>
+    "use strict";
+  
+    var ref = new Firebase("https://temputrip.firebaseio.com");
+ref.createUser({
+  email: "bobtony@firebase.com",
+  password: "correcthorsebatterystaple"
+}, function(error, userData) {
+  if (error) {
+    switch (error.code) {
+      case "EMAIL_TAKEN":
+        console.log("The new user account cannot be created because the email is already in use.");
+        break;
+      case "INVALID_EMAIL":
+        console.log("The specified email is not a valid email.");
+        break;
+      default:
+        console.log("Error creating user:", error);
+    }
+  } else {
+    console.log("Successfully created user account with uid:", userData.uid);
+  }
+});
+        function authDataCallback(authData) {
+  if (authData) {
+    console.log("User " + authData.uid + " is logged in with " + authData.provider);
+  } else {
+    console.log("User is logged out");
+  }
+}
+// Register the callback to be fired every time auth state changes
+var ref = new Firebase("https://temputrip.firebaseio.com");
+ref.onAuth(authDataCallback);
+        
+        var ref = new Firebase("https://temputrip.firebaseio.com");
+var authData = ref.getAuth();
+
+if (authData) {
+  console.log("User " + authData.uid + " is logged in with " + authData.provider);
+} else {
+  console.log("User is logged out");
+}
+        
+        // Create a callback to handle the result of the authentication
+function authHandler(error, authData) {
+  if (error) {
+    console.log("Login Failed!", error);
+  } else {
+    console.log("Authenticated successfully with payload:", authData);
+  }
+}
+
+// Authenticate users with a custom authentication token
+ref.authWithCustomToken("<token>", authHandler);
+
+// Alternatively, authenticate users anonymously
+ref.authAnonymously(authHandler);
+
+// Or with an email/password combination
+ref.authWithPassword({
+  email    : 'bobtony@firebase.com',
+  password : 'correcthorsebatterystaple'
+}, authHandler);
+
+// Or via popular OAuth providers ("facebook", "github", "google", or "twitter")
+ref.authWithOAuthPopup("<provider>", authHandler);
+ref.authWithOAuthRedirect("<provider>", authHandler);
+        
+        // we would probably save a profile when we register new users on our site
+// we could also read the profile to see if it's null
+// here we will just simulate this with an isNewUser boolean
+var isNewUser = true;
+
+var ref = new Firebase("https://temputrip.firebaseio.com");
+ref.onAuth(function(authData) {
+  if (authData && isNewUser) {
+    // save the user's profile into the database so we can list users,
+    // use them in Security and Firebase Rules, and show profiles
+    ref.child("users").child(authData.uid).set({
+      provider: authData.provider,
+      name: getName(authData)
+    });
+  }
+});
+
+// find a suitable name based on the meta info given by each provider
+function getName(authData) {
+  switch(authData.provider) {
+     case 'password':
+       return authData.password.email.replace(/@.*/, '');
+     case 'twitter':
+       return authData.twitter.displayName;
+     case 'facebook':
+       return authData.facebook.displayName;
+  }
+}
+    </script>
+
+
 <div class="inthe">
 
 
@@ -73,6 +174,8 @@ $(document).ready(function (e) {
 
         <label for="email">Your email address:</label>
         <input id="email" name= "email" type = "email" placeholder="abc@cdf.com">
+        
+        
 
         <br/>
 
@@ -80,6 +183,8 @@ $(document).ready(function (e) {
         <input id="pass" name= "pass" type = "password">
 
         <input type="submit" value="login">
+        
+        
 
     </form>
 </div>
@@ -98,4 +203,6 @@ $(document).ready(function (e) {
 
 
 </body>
+    
+    
 </html>
