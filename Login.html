@@ -57,7 +57,7 @@ $scope.SignIn = function(event) {
             <label class="checkbox">
                 <a href="#"> Sign Up</>
         </label>
-        <button type="button" class="btn btn-lg btn-primary btn-block">SignIn</button>
+        <button type="button" ng-click="SignIn($event)" class="btn btn-lg btn-primary btn-block">SignIn</button>
       </form>
  
     </div>
@@ -65,10 +65,8 @@ $scope.SignIn = function(event) {
    
  
 </body>
- 
-<body>
- 
- <button type="button" ng-click="SignIn($event)" class="btn btn-lg btn-primary btn-block">SignIn</button>
+
+    
 <body>
     <div id="lotOfPages">
     
@@ -121,6 +119,8 @@ $(document).ready(function (e) {
 
         <label for="email">Your email address:</label>
         <input id="email" name= "email" type = "email" placeholder="abc@cdf.com">
+        
+        
 
         <br/>
 
