@@ -50,14 +50,14 @@
 
 </head>
 <body>
-var messageListRef = new Firebase('https://samplechat.firebaseio-demo.com/message_list');
+var messageListRef = new Firebase('https://TempuTrip.firebaseio.com/message_list');
 var newMessageRef = messageListRef.push();
     newMessageRef.set({ 'user_id': 'fred', 'text': 'Yabba Dabba Doo!' });
 // We've appended a new message to the message_list location.
 var path = newMessageRef.toString();
 // path will be something like
 // 'https://samplechat.firebaseio-demo.com/message_list/-IKo28nwJLH0Nc5XeFmj'
- var messageListRef = new Firebase('https://SampleChat.firebaseIO-demo.com/message_list');
+ var messageListRef = new Firebase('https://TempuTrip.firebaseIO.com/message_list');
     messageListRef.push({ 'user_id': 'fred', 'text': 'Yabba Dabba Doo!' });
 // Same effect as the previous example, but we've combined the push() and the set().
  
