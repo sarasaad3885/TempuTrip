@@ -62,7 +62,10 @@ $(document).ready(function (e) {
 
 </script>
     
-    <script>
+$.getScript('https://cdn.firebase.com/v0/firebase.js', function() {
+
+    // now I can use Firebase
+
         var usersRef = ref.child("users");
 usersRef.set({
   alanisawesome: {
@@ -94,7 +97,8 @@ usersRef.child("gracehop").set({
     author: "gracehop",
     title: "Announcing COBOL, a New Programming Language"
   });
-    </script>
+
+});
 
 <div class="inthe">
 
