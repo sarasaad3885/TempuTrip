@@ -101,20 +101,41 @@
 
             <label for="pass">Password:</label>
             <input id="pass" name="pass" type="password">
-
-            <input type="submit" value="login">
              
-        <div id="todoItems"></div>
-    <button id="submit">Login</button>
-    <br/><br/>
-    <div id="sentiments"></div>  
+            <div id="todoItems"></div>
+            <button id="#auth">Login</button>
+            <br/><br/>
+            <div id="sentiments"></div>  
 
             
         </form>
      
+   <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
 
+    <script src="jquery-3.1.0.js"></script>
          
-      
+   <script>
+    
+
+      $("#auth").click(function() {
+            var ref = new Firebase("https://temputrip.firebaseio.com");
+
+        ref.authWithOAuthPopup("google", function(error, authData) {
+            if (error) {
+                console.log("Login Failed!", error);
+                console.log(error);
+            } else {
+                console.log("Authenticated successfully with payload:", authData);
+            }
+        }, {
+            "scope": "email, password"
+        });
+
+        return false;
+      });
+    
+     </script>
+     
     </div>
 
     <footer>
