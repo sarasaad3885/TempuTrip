@@ -66,6 +66,26 @@ totalVisitors.on('value', logVisitorCount);
 <script>
     "use strict";
   
+    var ref = new Firebase("https://temputrip.firebaseio.com");
+ref.createUser({
+  email: "bobtony@firebase.com",
+  password: "correcthorsebatterystaple"
+}, function(error, userData) {
+  if (error) {
+    switch (error.code) {
+      case "EMAIL_TAKEN":
+        console.log("The new user account cannot be created because the email is already in use.");
+        break;
+      case "INVALID_EMAIL":
+        console.log("The specified email is not a valid email.");
+        break;
+      default:
+        console.log("Error creating user:", error);
+    }
+  } else {
+    console.log("Successfully created user account with uid:", userData.uid);
+  }
+});
         function authDataCallback(authData) {
   if (authData) {
     console.log("User " + authData.uid + " is logged in with " + authData.provider);
