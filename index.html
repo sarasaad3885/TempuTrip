@@ -52,8 +52,6 @@
 
 </head>
 <body>
- var Firebase = require("firebase");
-  var firebaseObj = new Firebase("https:TempuTrip.firebaseio.com"); 
  
  angular.module('myApp.home', ['ngRoute','firebase'])
  
@@ -74,6 +72,8 @@ $scope.SignIn = function(event) {
             console.log('Authentication failure');
         });
 }
+
+ </body>
  
 <body ng-controller="HomeCtrl">
  
@@ -95,6 +95,8 @@ $scope.SignIn = function(event) {
    
  
 </body>
+ 
+<body>
  
  <button type="button" ng-click="SignIn($event)" class="btn btn-lg btn-primary btn-block">SignIn</button>
 
