@@ -89,6 +89,11 @@ usersRef.child("gracehop").set({
     alert("Data saved successfully.");
   }
 });
+        // This is equivalent to the calls to push().set(...) above
+  postsRef.push({
+    author: "gracehop",
+    title: "Announcing COBOL, a New Programming Language"
+  });
     </script>
 
 <div class="inthe">
