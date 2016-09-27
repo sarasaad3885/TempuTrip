@@ -74,6 +74,13 @@
     console.log("Successfully created user account with uid:", userData.uid);
   }
 });
+ {
+  "rules": {
+    ".read": true,
+    ".write": "auth.uid === 'admin'",
+    ".validate": "newData.isString() && newData.val().length < 500"
+  }
+}
  
 <button onclick="goBack()" id="back">Go Back</button>
 
