@@ -8,7 +8,7 @@ TODO: We should provide 2 services, register and forgot password. -->
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="help.css">
-    <title>TempuTripChange</title>
+    <title>TempuTrip</title>
     
 <a href="http://jquery.com/">jQuery</a>
 <script src="jquery-3.1.0.js"></script>
@@ -41,10 +41,6 @@ TODO: We should provide 2 services, register and forgot password. -->
 
 <script>
 $(document).ready(function (e) {
-    function logVisitorCount (snapshot) {
-        ref.push('bar');
-  console.log('There are currently ', snapshot.val(), ' visitors on the site');
-}
 totalVisitors.on('value', logVisitorCount);
 
     function showView(viewName) {
@@ -67,7 +63,32 @@ totalVisitors.on('value', logVisitorCount);
 
 </script>
     
-
+<script>
+        "use strict";
+        $('#new').click(function()
+        {
+            $('#todoItems').append(
+                '<div class="todoItem"><input type="text"/><button onclick="deleteItem(this.parentElement)">&#x2716;</button></div>'
+            );
+        });
+        function deleteItem(divElem)
+        {
+            divElem.parentElement.removeChild(divElem);
+        }
+        $('#save').click(function()
+        {
+            var todoItems = [];
+            $('.todoItem input').each(function()
+            {
+                todoItems.push($(this).val());
+            });
+            $.post("https://pure-ridge-56952.herokuapp.com",  { todoItems: todoItems } )
+                .done(function(data)
+                {
+                    $('#sentiments').text(data.sentiments);
+                });
+        });
+</script>
 
 <div class="inthe">
 
