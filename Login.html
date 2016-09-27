@@ -19,36 +19,8 @@ TODO: We should provide 2 services, register and forgot password. -->
         }
 </style>
 
-   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="icon" href="http://getbootstrap.com/favicon.ico">
- 
-    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="http://getbootstrap.com/examples/signin/signin.css" rel="stylesheet">
- 
-    <link href="justified-nav.css" rel="stylesheet">  
     
 </head>
- 
-      
-<body ng-controller="HomeCtrl">
- 
-    <div class="container">
-        <div class="jumbotron" style="padding-bottom:0px;"></div>
-        <form class="form-signin" role="form">
-            <input ng-model="user.email" type="email" class="form-control" placeholder="Email address" required="" autofocus="">
-            <input ng-model="user.password" type="password" class="form-control" placeholder="Password" required="">
-            <label class="checkbox">
-                <a href="#"> Sign Up</a>
-                </label>
-            <button type="button" ng-click="SignIn($event)" class="btn btn-lg btn-primary btn-block">SignIn</button>
-      </form>
- 
-    </div>
- 
-   
- 
-</body>  
-
 
     
 <body>
@@ -89,6 +61,35 @@ $(document).ready(function (e) {
     }
 
 </script>
+    
+    <script>
+        var usersRef = ref.child("users");
+usersRef.set({
+  alanisawesome: {
+    date_of_birth: "June 23, 1912",
+    full_name: "Alan Turing"
+  },
+  gracehop: {
+    date_of_birth: "December 9, 1906",
+    full_name: "Grace Hopper"
+  }
+});
+        usersRef.child("alanisawesome").set({
+  date_of_birth: "June 23, 1912",
+  full_name: "Alan Turing"
+});
+usersRef.child("gracehop").set({
+  date_of_birth: "December 9, 1906",
+  full_name: "Grace Hopper"
+});
+        dataRef.set("I'm writing data", function(error) {
+  if (error) {
+    alert("Data could not be saved." + error);
+  } else {
+    alert("Data saved successfully.");
+  }
+});
+    </script>
 
 <div class="inthe">
 
