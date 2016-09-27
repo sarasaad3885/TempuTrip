@@ -62,39 +62,10 @@ totalVisitors.on('value', logVisitorCount);
     }
 
 </script>
-    
-    <div id="todoItems"></div>
-    <button id="new">New item</button>
-    <button id="save">Save</button>
-    <br/><br/>
-    <div id="sentiments"></div>
 
-    <script>
-        "use strict";
-        $('#new').click(function()
-        {
-            $('#todoItems').append(
-                '<div class="todoItem"><input type="text"/><button onclick="deleteItem(this.parentElement)">&#x2716;</button></div>'
-            );
-        });
-        function deleteItem(divElem)
-        {
-            divElem.parentElement.removeChild(divElem);
-        }
-        $('#save').click(function()
-        {
-            var todoItems = [];
-            $('.todoItem input').each(function()
-            {
-                todoItems.push($(this).val());
-            });
-            $.post("http://127.0.0.1:4000",  { todoItems: todoItems } )
-                .done(function(data)
-                {
-                    $('#sentiments').text(data.sentiments);
-                });
-        });
-        
+<script>
+    "use strict";
+  
         function authDataCallback(authData) {
   if (authData) {
     console.log("User " + authData.uid + " is logged in with " + authData.provider);
@@ -103,10 +74,10 @@ totalVisitors.on('value', logVisitorCount);
   }
 }
 // Register the callback to be fired every time auth state changes
-var ref = new Firebase("https://<YOUR-FIREBASE-APP>.firebaseio.com");
+var ref = new Firebase("https://temputrip.firebaseio.com");
 ref.onAuth(authDataCallback);
         
-        var ref = new Firebase("https://<YOUR-FIREBASE-APP>.firebaseio.com");
+        var ref = new Firebase("https://temputrip.firebaseio.com");
 var authData = ref.getAuth();
 
 if (authData) {
@@ -145,7 +116,7 @@ ref.authWithOAuthRedirect("<provider>", authHandler);
 // here we will just simulate this with an isNewUser boolean
 var isNewUser = true;
 
-var ref = new Firebase("https://<YOUR-FIREBASE-APP>.firebaseio.com");
+var ref = new Firebase("https://temputrip.firebaseio.com");
 ref.onAuth(function(authData) {
   if (authData && isNewUser) {
     // save the user's profile into the database so we can list users,
