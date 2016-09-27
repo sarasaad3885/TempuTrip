@@ -41,6 +41,10 @@ TODO: We should provide 2 services, register and forgot password. -->
 
 <script>
 $(document).ready(function (e) {
+    function logVisitorCount (snapshot) {
+  console.log('There are currently ', snapshot.val(), ' visitors on the site');
+}
+totalVisitors.on('value', logVisitorCount);
 
     function showView(viewName) {
             $('.view').hide();
