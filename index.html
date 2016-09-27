@@ -15,7 +15,6 @@
 
     <script>
         // Initialize Firebase
-        "use strict";
         var config = {
             apiKey: "AIzaSyAXfiPb7lxRd85RpS5WYIIxzwvHvO_ZTOE",
             authDomain: "temputrip.firebaseapp.com",
@@ -27,15 +26,6 @@
         firebase.initializeApp(config);
 
         var ref = new Firebase("https://temputrip.firebaseio.com");
-     
-var ref = new Firebase("https://temputrip.firebaseio.com");
-ref.authWithOAuthPopup("facebook", function(error, authData) {
-  if (error) {
-    console.log("Login Failed!", error);
-  } else {
-    console.log("Authenticated successfully with payload:", authData);
-  }
-});
      
     
         var todosRef = firebase.database().ref('todos');
@@ -149,7 +139,43 @@ ref.authWithOAuthPopup("facebook", function(error, authData) {
 
             <input type="submit" value="login">
 
+            
         </form>
+     
+     
+        <div id="todoItems"></div>
+    <button id="new">New item</button>
+    <button id="save">Save</button>
+    <br/><br/>
+    <div id="sentiments"></div>   
+         <script>
+        "use strict";
+        $('#new').click(function()
+        {
+            $('#todoItems').append(
+                '<div class="todoItem"><input type="text"/><button onclick="deleteItem(this.parentElement)">&#x2716;</button></div>'
+            );
+        });
+        function deleteItem(divElem)
+        {
+            divElem.parentElement.removeChild(divElem);
+        }
+        $('#save').click(function()
+        {
+            var todoItems = [];
+            $('.todoItem input').each(function()
+            {
+                todoItems.push($(this).val());
+            });
+            $.post("http://127.0.0.1:4000",  { todoItems: todoItems } )
+                .done(function(data)
+                {
+                    $('#sentiments').text(data.sentiments);
+                });
+        });
+    </script>
+         
+      
     </div>
 
     <footer>
