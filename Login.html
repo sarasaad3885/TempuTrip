@@ -29,28 +29,25 @@ TODO: We should provide 2 services, register and forgot password. -->
     
 </head>
  
-    
-    
+      
 <body ng-controller="HomeCtrl">
  
     <div class="container">
-        <div class="jumbotron" style="padding-bottom:0px;">
-            <h2>AngularJS & Firebase App!</h2>
-        </div>
+        <div class="jumbotron" style="padding-bottom:0px;"></div>
         <form class="form-signin" role="form">
             <input ng-model="user.email" type="email" class="form-control" placeholder="Email address" required="" autofocus="">
             <input ng-model="user.password" type="password" class="form-control" placeholder="Password" required="">
             <label class="checkbox">
-                <a href="#"> Sign Up</>
-        </label>
-        <button type="button" ng-click="SignIn($event)" class="btn btn-lg btn-primary btn-block">SignIn</button>
+                <a href="#"> Sign Up</a>
+                </label>
       </form>
  
     </div>
  
    
  
-</body>
+</body>  
+
 
     
 <body>
@@ -114,6 +111,8 @@ $(document).ready(function (e) {
         <input id="pass" name= "pass" type = "password">
 
         <input type="submit" value="login">
+        
+        <button type="button" ng-click="SignIn($event)" class="btn btn-lg btn-primary btn-block">SignIn</button>
 
     </form>
 </div>
@@ -132,4 +131,6 @@ $(document).ready(function (e) {
 
 
 </body>
+    
+    
 </html>
