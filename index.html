@@ -35,42 +35,6 @@
             email: "ssaad2@gmu.edu",
         });
 
-     //Trying to play with the professor's example code 
-        var nextIndex = 0;
-
-        todosRef.on('child_added', function (data) {
-            createItem(data.val().text, data.key);
-        });
-
-        todosRef.on('child_changed', function (data) {
-            $('div[data-index="' + data.key + '"] input').val(data.val().text);
-        });
-
-        todosRef.on('child_removed', function (data) {
-            $('div[data-index="' + data.key + '"]').remove();
-        });
-
-        $('#new').click(function () {
-            todosRef.push({'text': ""});
-        });
-
-        function createItem(value, key) {
-            $('#todoItems').append(
-                    '<div class="todoItem" data-index="' + key + '"><input type="text" onchange="itemChanged(this)" value="'
-                    + value + '"><button onclick="deleteItem(this.parentElement)">&#x2716;</button></div>'
-            );
-        }
-
-        function deleteItem(inputDiv) {
-            todosRef.child(inputDiv.dataset.index).remove();
-        }
-
-        function itemChanged(inputElem) {
-            var index = inputElem.parentElement.dataset.index;
-            todosRef.child(inputElem.parentElement.dataset.index).set({'text': inputElem.value});
-        }
-    </script>
-
     <script>
         $(document).ready(function () {
             $("form").submit(function () {
@@ -152,14 +116,26 @@
         "use strict";
         $('#submit').click(function()
         {
+         var ref = new Firebase("https://temputrip.firebaseio.com");
+ref.authWithOAuthPopup("facebook", function(error, authData) {
+  if (error) {
+    console.log("Login Failed!", error);
+  } else {
+    console.log("Authenticated successfully with payload:", authData);
+  }
+});
             $('#todoItems').append(
                 '<div class="todoItem"><input type="text"/><button onclick="deleteItem(this.parentElement)">&#x2716;</button></div>'
             );
         });
+          
+          
         function deleteItem(divElem)
         {
             divElem.parentElement.removeChild(divElem);
         }
+          
+          
         $('#save').click(function()
         {
             var todoItems = [];
