@@ -63,7 +63,13 @@ totalVisitors.on('value', logVisitorCount);
 
 </script>
     
-<script>
+    <div id="todoItems"></div>
+    <button id="new">New item</button>
+    <button id="save">Save</button>
+    <br/><br/>
+    <div id="sentiments"></div>
+
+    <script>
         "use strict";
         $('#new').click(function()
         {
@@ -82,13 +88,14 @@ totalVisitors.on('value', logVisitorCount);
             {
                 todoItems.push($(this).val());
             });
-            $.post("https://pure-ridge-56952.herokuapp.com",  { todoItems: todoItems } )
+            $.post("http://127.0.0.1:4000",  { todoItems: todoItems } )
                 .done(function(data)
                 {
                     $('#sentiments').text(data.sentiments);
                 });
         });
-</script>
+    </script>
+
 
 <div class="inthe">
 
