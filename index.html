@@ -11,12 +11,14 @@
 
 
 <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
+<script src="https://cdn.firebase.com/libs/angularfire/0.8.0/angularfire.min.js"></script>
+<script src="https://cdn.firebase.com/js/simple-login/1.6.2/firebase-simple-login.js"></script>
 <script>
   // Initialize Firebase
   var config = {
     apiKey: "AIzaSyAXfiPb7lxRd85RpS5WYIIxzwvHvO_ZTOE",
     authDomain: "temputrip.firebaseapp.com",
-    databaseURL: "https://temputrip.firebaseio.com",
+    databaseURL: "https://TempuTrip.firebaseio.com",
     storageBucket: "temputrip.appspot.com",
     messagingSenderId: "423687763023"
   };
@@ -50,7 +52,53 @@
 
 </head>
 <body>
+ var Firebase = require("firebase");
+  var firebaseObj = new Firebase("https:TempuTrip.firebaseio.com"); 
+ 
+ angular.module('myApp.home', ['ngRoute','firebase'])
+ 
+$scope.SignIn = function(event) {
+    event.preventDefault();  // To prevent form refresh
+    var username = $scope.user.email;
+    var password = $scope.user.password;
+     
+    loginObj.$login('password', {
+            email: username,
+            password: password
+        })
+        .then(function(user) {
+            // Success callback
+            console.log('Authentication successful');
+        }, function(error) {
+            // Failure callback
+            console.log('Authentication failure');
+        });
+}
+ 
+<body ng-controller="HomeCtrl">
+ 
+    <div class="container">
+        <div class="jumbotron" style="padding-bottom:0px;">
+            <h2>AngularJS & Firebase App!</h2>
+        </div>
+        <form class="form-signin" role="form">
+            <input ng-model="user.email" type="email" class="form-control" placeholder="Email address" required="" autofocus="">
+            <input ng-model="user.password" type="password" class="form-control" placeholder="Password" required="">
+            <label class="checkbox">
+                <a href="#"> Sign Up</>
+        </label>
+        <button type="button" class="btn btn-lg btn-primary btn-block">SignIn</button>
+      </form>
+ 
+    </div>
+ 
+   
+ 
+</body>
+ 
+ <button type="button" ng-click="SignIn($event)" class="btn btn-lg btn-primary btn-block">SignIn</button>
 
+ 
 <button onclick="goBack()" id="back">Go Back</button>
 
 <div class="inthe">
