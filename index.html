@@ -11,10 +11,20 @@
 
 
 <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
-<script src="https://cdn.firebase.com/libs/angularfire/0.8.0/angularfire.min.js"></script>
-<script src="https://cdn.firebase.com/js/simple-login/1.6.2/firebase-simple-login.js"></script>
+
+ </head>
+ 
+<body>
+<div id="todoItems"></div>
+<button id="new">New item</button>
+ 
+ <br/><br/>
+<div id="sentiments"></div>
+ 
 <script>
   // Initialize Firebase
+ "use strict";
+ 
   var config = {
     apiKey: "AIzaSyAXfiPb7lxRd85RpS5WYIIxzwvHvO_ZTOE",
     authDomain: "temputrip.firebaseapp.com",
@@ -23,6 +33,43 @@
     messagingSenderId: "423687763023"
   };
   firebase.initializeApp(config);
+ 
+ var todosRef = firebase.database().ref('todos');
+    firebase.database().ref('users/tlatoza').set({
+        username: "Thomas LaToza",
+        email: "tlatoza@gmu.edu",
+        profile_picture : "profilePic.jpg"
+    });
+    var nextIndex = 0;
+    todosRef.on('child_added', function(data) {
+        createItem(data.val().text, data.key);
+    });
+    todosRef.on('child_changed', function(data) {
+        $('div[data-index="' + data.key + '"] input').val(data.val().text);
+    });
+    todosRef.on('child_removed', function(data) {
+        $('div[data-index="' + data.key + '"]').remove();
+    });
+    $('#new').click(function()
+    {
+        todosRef.push({ 'text': ""});
+    });
+    function createItem(value, key)
+    {
+        $('#todoItems').append(
+                '<div class="todoItem" data-index="' + key+ '"><input type="text" onchange="itemChanged(this)" value="'
+                + value + '"><button onclick="deleteItem(this.parentElement)">&#x2716;</button></div>'
+        );
+    }
+    function deleteItem(inputDiv)
+    {
+        todosRef.child(inputDiv.dataset.index).remove();
+    }
+    function itemChanged(inputElem)
+    {
+        var index = inputElem.parentElement.dataset.index;
+        todosRef.child(inputElem.parentElement.dataset.index).set({ 'text': inputElem.value });
+    }
 </script>
 
     <script src="jquery-3.1.0.js"></script>
@@ -52,9 +99,9 @@
  
  <script src="home/home.js"></script>
 
-</head>
 
-<div ng-view></div>
+
+ </body>
  
 <button onclick="goBack()" id="back">Go Back</button>
 
