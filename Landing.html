@@ -11,7 +11,13 @@ TODO: The result should merge with weather data, another scenario. -->
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="help.css">
+     
+    <meta charset="UTF-8" />
     <title>TempuTrip</title>
+    <script type="text/babel" src="cities.js"></script>
+    <script src="build/react.js"></script>
+    <script src="build/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-core@5.8.38/browser.min.js"></script>
 
      <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
     <script src="init.js"></script>
@@ -116,8 +122,8 @@ TODO: The result should merge with weather data, another scenario. -->
             place to go to find out where to vacation!</b></p>
     </header>
     <div class="center">
-        <p class="center">Simply pick an area and time and we'll tell you where the best place based on weather will be
-            to go.</p>
+        <p class="center">Where would you like to travel?</p>
+
         <form>
 
             <p>When would you like to travel?</p>
