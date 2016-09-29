@@ -1,10 +1,6 @@
-var Hello = React.createClass({
-  render: function() {
-    return <div>Hello {this.props.name}</div>;
-  }
-});
-
 ReactDOM.render(
-  <Hello name="World" />,
-  document.getElementById('container')
+  <h1>Hello, world!</h1>,
+  document.getElementById('example')
 );
+
+<script type="text/babel" src="src/helloworld.js"></script>
