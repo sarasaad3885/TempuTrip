@@ -11,31 +11,9 @@
 
     <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
     <script src="init.js"></script>
+    <script src="log.js"></script>
  
     <script src="jquery-3.1.0.js"></script>
-
-    <script>
-        // Initialize Firebase
-        var config = {
-            apiKey: "AIzaSyAXfiPb7lxRd85RpS5WYIIxzwvHvO_ZTOE",
-            authDomain: "temputrip.firebaseapp.com",
-            databaseURL: "https://TempuTrip.firebaseio.com",
-            storageBucket: "temputrip.appspot.com",
-            messagingSenderId: "423687763023"
-        };
-
-        firebase.initializeApp(config);
-
-        var ref = new Firebase("https://temputrip.firebaseio.com");
-     
-    
-        var todosRef = firebase.database().ref('todos');
-
-        firebase.database().ref('users/ssaad').set({
-            username: "sarasaad",
-            email: "ssaad2@gmu.edu",
-        });
- </script>
 
     <script>
         $(document).ready(function () {
@@ -110,33 +88,6 @@
 
             
         </form>
-     
-   <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
-
-    <script src="jquery-3.1.0.js"></script>
-         
-   <script>
-    
-
-      $("#auth").click(function() {
-            var ref = new Firebase("https://temputrip.firebaseio.com");
-
-       // Create a callback which logs the current auth state
-function authDataCallback(authData) {
-  if (authData) {
-    console.log("User " + authData.uid + " is logged in with " + authData.provider);
-  } else {
-    console.log("User is logged out");
-  }
-}
-
-// Register the callback to be fired every time auth state changes
-var ref = new Firebase("https://temputrip.firebaseio.com");
-ref.onAuth(authDataCallback);
-       
-      });
-    
-     </script>
      
     </div>
 
