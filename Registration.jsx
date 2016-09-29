@@ -1,8 +1,4 @@
-var React         = require('react')
-var AccountFields = require('./AccountFields')
-var SurveyFields  = require('./SurveyFields')
-var Confirmation  = require('./Confirmation')
-var Success       = require('./Success')
+var AccountFields = require('login')
 
 var Registration = React.createClass({
 	getInitialState: function() {
@@ -15,12 +11,6 @@ var Registration = React.createClass({
 		switch (this.state.step) {
 			case 1:
 				return <AccountFields />
-			case 2:
-				return <SurveyFields />
-			case 3:
-				return <Confirmation />
-			case 4:
-				return <Success />
 		}
 	}
 
@@ -62,17 +52,6 @@ render: function() {
       return <AccountFields fieldValues={fieldValues}
                             nextStep={this.nextStep}
                             saveValues={this.saveValues} />
-    case 2:
-      return <SurveyFields fieldValues={fieldValues}
-                           nextStep={this.nextStep}
-                           previousStep={this.previousStep}
-                           saveValues={this.saveValues} />
-    case 3:
-      return <Confirmation fieldValues={fieldValues}
-                           previousStep={this.previousStep}
-                           submitRegistration={this.submitRegistration} />
-    case 4:
-      return <Success fieldValues={fieldValues} />
   }
 }
 
