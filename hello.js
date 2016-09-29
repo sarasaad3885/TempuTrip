@@ -1,5 +1,5 @@
 ReactDOM.render(
-  <h1>Hello, world!</h1>,
+  <h1>Welcome, to, TempuTrip!</h1>,
   document.getElementById('example')
 );
 
