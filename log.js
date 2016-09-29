@@ -29,7 +29,7 @@ function create() {
 		document.inForm.submit();
 	}, function(error) {
 		$('#print').css("display","block");
-		window.alert(5 + 6);
+		$('#print').text(error.message);
 		return;
 	});
 }
