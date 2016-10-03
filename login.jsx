@@ -2,6 +2,7 @@ var Hello = React.createClass({
   render: function() {
     return <div >
       < label > Name < /label>  < input type = "text"
+                                  </br>
     ref = "name"
     defaultValue = {
       this.props.name
