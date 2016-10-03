@@ -24,7 +24,7 @@ var Hello = React.createClass({
 
     < button onClick = {
       this.saveAndContinue
-    } > Save and Continue < /button></div >
+    } > Create Account < /button></div >
   },
 
 
