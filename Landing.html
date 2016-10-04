@@ -15,16 +15,39 @@ TODO: The result should merge with weather data, another scenario. -->
      
     <meta charset="UTF-8" />
     <title>TempuTrip</title>
+
+    <script type="text/lessl">
+        "use strict";
+         var config = {
+             apiKey: "AIzaSyBgPHiUhiub1pq_anz2IVTWlC_Y19AXhSQ",
+             authDomain: "swe432foobar.firebaseapp.com",
+             databaseURL: "https://swe432foobar.firebaseio.com",
+             storageBucket: "swe432foobar.appspot.com",
+             messagingSenderId: "275251107"
+         };
+         firebase.initializeApp(config);
+    </script>
     <script type="text/babel" src="cities.js"></script>
     <script type="text/babel" src="Select.js"></script>
+    <script type="text/babel" src="todo.js"></script>
     <script src="build/react.js"></script>
     <script src="build/react-dom.js"></script>
-    <script src="https://unpkg.com/babel-core@5.8.38/browser.min.js"></script>
+    <!--<script src="https://unpkg.com/babel-core@5.8.38/browser.min.js"></script>-->
 
-     <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
     <script src="init.js"></script>
     <script src="log.js"></script>
-     
+
+    <script src="https://fb.me/react-15.0.0.js"></script>
+    <script src="https://fb.me/react-dom-15.0.0.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+
+
+    <!-- ReactFire -->
+    <script src="https://cdn.firebase.com/libs/reactfire/1.0.0/reactfire.min.js"></script>
+
     <script src="jquery-3.1.0.js"></script>
 
     <script>
@@ -110,6 +133,9 @@ TODO: The result should merge with weather data, another scenario. -->
 
     </script>
 
+
+
+
 </head>
 
 <body>
@@ -135,7 +161,11 @@ TODO: The result should merge with weather data, another scenario. -->
            	 <br/><br/>
           		  <div id="sentiments"></div> 
 		</form>
-         
+
+        <div id="container_todo">
+            <!-- This element's contents will be replaced with your component. -->
+        </div>
+
         <form>
 
             <p>When would you like to travel?</p>
