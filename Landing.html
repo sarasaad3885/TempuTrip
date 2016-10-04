@@ -11,7 +11,41 @@ TODO: The result should merge with weather data, another scenario. -->
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="help.css">
+    <link rel="stylesheet" type="text/css" href="Select.css">
+     
+    <meta charset="UTF-8" />
     <title>TempuTrip</title>
+
+    <script type="text/lessl">
+        "use strict";
+         var config = {
+             apiKey: "AIzaSyBgPHiUhiub1pq_anz2IVTWlC_Y19AXhSQ",
+             authDomain: "swe432foobar.firebaseapp.com",
+             databaseURL: "https://swe432foobar.firebaseio.com",
+             storageBucket: "swe432foobar.appspot.com",
+             messagingSenderId: "275251107"
+         };
+         firebase.initializeApp(config);
+    </script>
+    <script type="text/babel" src="Cities.js"></script>
+    <script type="text/babel" src="Select.js"></script>
+    <script type="text/babel" src="todo.js"></script>
+    <script src="build/react.js"></script>
+    <script src="build/react-dom.js"></script>
+    <!--<script src="https://unpkg.com/babel-core@5.8.38/browser.min.js"></script>-->
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
+    <script src="init.js"></script>
+    <script src="log.js"></script>
+
+    <script src="https://fb.me/react-15.0.0.js"></script>
+    <script src="https://fb.me/react-dom-15.0.0.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+
+    <!-- ReactFire -->
+    <script src="https://cdn.firebase.com/libs/reactfire/1.0.0/reactfire.min.js"></script>
 
     <script src="jquery-3.1.0.js"></script>
 
@@ -98,6 +132,9 @@ TODO: The result should merge with weather data, another scenario. -->
 
     </script>
 
+
+
+
 </head>
 
 <body>
@@ -112,8 +149,22 @@ TODO: The result should merge with weather data, another scenario. -->
             place to go to find out where to vacation!</b></p>
     </header>
     <div class="center">
-        <p class="center">Simply pick an area and time and we'll tell you where the best place based on weather will be
-            to go.</p>
+        <p class="center">Where would you like to travel?</p>
+         <div id="container_cities">
+               <!-- Input the cities you'd like to travel to. -->
+          </div>
+
+              <form action = "Data.js"> 
+		       <div id="results"></div>
+           		 <button>See Results in Table</button>
+           	 <br/><br/>
+          		  <div id="sentiments"></div> 
+		</form>
+
+        <div id="container_todo">
+            <!-- This element's contents will be replaced with your component. -->
+        </div>
+
         <form>
 
             <p>When would you like to travel?</p>
@@ -135,7 +186,13 @@ TODO: The result should merge with weather data, another scenario. -->
                 <input type="radio" name="location" value="Western"> Western
             </p>
             
-            <p>Here are the weather options we have:</p>
+		
+		  <p>Here are the weather options we have:</p>
+		<div id="Select">
+    		<!-- This element's contents will be replaced with your component. -->
+		</div>
+		
+          <!--
             <table align="center" border="1">
                 <tr>
                     <td>Temperature</td>
@@ -147,7 +204,11 @@ TODO: The result should merge with weather data, another scenario. -->
                     <td>Humidity</td>
                 </tr>
             </table>
+	    -->
+		
             <br>
+		
+		
         </form>
     </div>
 

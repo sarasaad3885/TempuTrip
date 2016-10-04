@@ -9,3 +9,4 @@
 
 
 # The two scenarios currently implemented are: scenraio 1 (registration), and scenario 3 (searching).
+# The third implemented scenario is scenario 4 (input).
