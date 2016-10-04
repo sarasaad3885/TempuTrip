@@ -27,7 +27,7 @@ var ServiceChooser = React.createClass({
                     <div id="services">
                         {services}
 
-                        <p id="total">Total <b>${this.state.total.toFixed(2)}</b></p>
+                        <p id="total">Total <b>{this.state.total}</b></p>
 
                     </div>
 
