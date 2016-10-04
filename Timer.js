@@ -42,7 +42,7 @@ var TimerExample = React.createClass({
         // Although we return an entire <p> element, react will smartly update
         // only the changed parts, which contain the seconds variable.
 
-        return <p>This example was started <b>{seconds} seconds</b> ago.</p>;
+        return <p>You have been trying to login about<b>{seconds} seconds</b> .</p>;
     }
 });
 
