@@ -18,7 +18,7 @@ var ServiceChooser = React.createClass({
         });
 
         return <div>
-                    <h1>Our services</h1>
+                    <h1>Weather Options</h1>
                     
                     <div id="services">
                         {services}
