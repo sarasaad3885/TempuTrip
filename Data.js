@@ -1,7 +1,7 @@
 var items = [
-  { name: 'Louise', age: 27, color: 'red' },
-  { name: 'Margaret', age: 15, color: 'blue'},
-  { name: 'Lisa', age:34, color: 'yellow'}
+  { name: 'Washington D.C.', weather: 84, thingstodo: 'museums' },
+  { name: 'Virginia Beach', weather: 78, thingstodo: 'beach'},
+  { name: 'Ocean City', weather:80, thingstodo: 'beach'}
 ];
 
 React.render(
