@@ -49,5 +49,5 @@ var TimerExample = React.createClass({
 
 ReactDOM.render(
     <TimerExample start={Date.now()} />,
-    document.getElementById('container')
+    document.getElementById('containe')
 );
