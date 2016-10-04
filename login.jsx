@@ -62,5 +62,5 @@ var Hello = React.createClass({
 });
 
 ReactDOM.render( < Hello name = " " / > ,
-  document.getElementById('container')
+  document.getElementById('logincontainer')
 );
