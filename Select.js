@@ -49,8 +49,7 @@ var Service = React.createClass({
 
         this.setState({ active: active });
         
-        // Notify the ServiceChooser, by calling its addTotal method
-        this.props.addTotal( active ? this.props.price : -this.props.price );
+    
 
     },
 
