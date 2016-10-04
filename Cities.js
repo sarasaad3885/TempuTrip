@@ -48,4 +48,4 @@ var TodoApp = React.createClass({
     }
 });
 
-ReactDOM.render(<TodoApp />, document.getElementById('container_todo'));
+ReactDOM.render(<TodoApp />, document.getElementById('container_cities'));
