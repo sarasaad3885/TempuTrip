@@ -77,5 +77,5 @@ var services = [
 
 ReactDOM.render(
     <ServiceChooser items={ services } />,
-    document.getElementById('container')
+    document.getElementById('Select')
 );
