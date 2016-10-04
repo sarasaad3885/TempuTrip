@@ -5,10 +5,6 @@ var ServiceChooser = React.createClass({
         return { total: 0 };
     },
 
-    addTotal: function( price ){
-        this.setState( { total: this.state.total + price } );
-    },
-
     render: function() {
 
         var self = this;
@@ -18,7 +14,7 @@ var ServiceChooser = React.createClass({
             // Create a new Service component for each item in the items array.
             // Notice that I pass the self.addTotal function to the component.
 
-            return <Service name={s.name} price={s.price} active={s.active} addTotal={self.addTotal} />;
+            return <Service name={s.name} price={s.price} active={s.active}  />;
         });
 
         return <div>
@@ -27,7 +23,7 @@ var ServiceChooser = React.createClass({
                     <div id="services">
                         {services}
 
-                        <p id="total">Total <b>{this.state.total}</b></p>
+                       
 
                     </div>
 
