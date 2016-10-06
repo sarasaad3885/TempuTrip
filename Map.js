@@ -1,39 +1,9 @@
+var data = [4, 8, 15, 16, 23, 42];
 
-var svg = d3.select("svg"),
-    width = +svg.attr("width"),
-    height = +svg.attr("height");
-
-var rateById = d3.map();
-
-var quantize = d3.scaleQuantize()
-    .domain([0, 0.15])
-    .range(d3.range(9).map(function(i) { return "q" + i + "-9"; }));
-
-var projection = d3.geoAlbersUsa()
-    .scale(1280)
-    .translate([width / 2, height / 2]);
-
-var path = d3.geoPath()
-    .projection(projection);
-
-d3.queue()
-    .defer(d3.json, "/mbostock/raw/4090846/us.json")
-    .defer(d3.tsv, "/unemployment.tsv", function(d) { rateById.set(d.id, +d.rate); })
-    .await(ready);
-
-function ready(error, us) {
-  if (error) throw error;
-
-  svg.append("g")
-      .attr("class", "counties")
-    .selectAll("path")
-      .data(topojson.feature(us, us.objects.counties).features)
-    .enter().append("path")
-      .attr("class", function(d) { return quantize(rateById.get(d.id)); })
-      .attr("d", path);
-
-  svg.append("path")
-      .datum(topojson.mesh(us, us.objects.states, function(a, b) { return a !== b; }))
-      .attr("class", "states")
-      .attr("d", path);
-}
+d3.select(".chart")
+  .selectAll("div")
+    .data(data)
+  .enter().append("div")
+    .style("width", function(d) 
+           { return d * 10 + "px"; })
+    .text(function(d) { return d; });
