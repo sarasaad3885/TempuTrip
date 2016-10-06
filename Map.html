@@ -1,70 +1,64 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
+<title>Non-Contiguous Cartogram</title>
 <style>
 
-.counties {
-  fill: none;
+.land {
+  fill: #fff;
+  stroke: #ccc;
 }
 
-.states {
-  fill: none;
-  stroke: #fff;
-  stroke-linejoin: round;
+.state {
+  fill: #ccc;
+  stroke: #666;
 }
-
-.q0-9 { fill:rgb(247,251,255); }
-.q1-9 { fill:rgb(222,235,247); }
-.q2-9 { fill:rgb(198,219,239); }
-.q3-9 { fill:rgb(158,202,225); }
-.q4-9 { fill:rgb(107,174,214); }
-.q5-9 { fill:rgb(66,146,198); }
-.q6-9 { fill:rgb(33,113,181); }
-.q7-9 { fill:rgb(8,81,156); }
-.q8-9 { fill:rgb(8,48,107); }
 
 </style>
-<svg width="960" height="600"></svg>
-<script src="//d3js.org/d3.v4.min.js"></script>
+<body>
+<script src="//d3js.org/d3.v3.min.js"></script>
 <script src="//d3js.org/topojson.v1.min.js"></script>
 <script>
 
-var svg = d3.select("svg"),
-    width = +svg.attr("width"),
-    height = +svg.attr("height");
+// Ratio of Obese (BMI >= 30) in U.S. Adults, CDC 2008
+var valueById = [
+   NaN, .187, .198,  NaN, .133, .175, .151,  NaN, .100, .125,
+  .171,  NaN, .172, .133,  NaN, .108, .142, .167, .201, .175,
+  .159, .169, .177, .141, .163, .117, .182, .153, .195, .189,
+  .134, .163, .133, .151, .145, .130, .139, .169, .164, .175,
+  .135, .152, .169,  NaN, .132, .167, .139, .184, .159, .140,
+  .146, .157,  NaN, .139, .183, .160, .143
+];
 
-var rateById = d3.map();
+var path = d3.geo.path();
 
-var quantize = d3.scaleQuantize()
-    .domain([0, 0.15])
-    .range(d3.range(9).map(function(i) { return "q" + i + "-9"; }));
+var svg = d3.select("body").append("svg")
+    .attr("width", 960)
+    .attr("height", 500);
 
-var projection = d3.geoAlbersUsa()
-    .scale(1280)
-    .translate([width / 2, height / 2]);
-
-var path = d3.geoPath()
-    .projection(projection);
-
-d3.queue()
-    .defer(d3.json, "/mbostock/raw/4090846/us.json")
-    .defer(d3.tsv, "/unemployment.tsv", function(d) { rateById.set(d.id, +d.rate); })
-    .await(ready);
-
-function ready(error, us) {
+d3.json("/mbostock/raw/4090846/us.json", function(error, us) {
   if (error) throw error;
 
-  svg.append("g")
-      .attr("class", "counties")
-    .selectAll("path")
-      .data(topojson.feature(us, us.objects.counties).features)
-    .enter().append("path")
-      .attr("class", function(d) { return quantize(rateById.get(d.id)); })
+  svg.append("path")
+      .datum(topojson.feature(us, us.objects.land))
+      .attr("class", "land")
       .attr("d", path);
 
-  svg.append("path")
-      .datum(topojson.mesh(us, us.objects.states, function(a, b) { return a !== b; }))
-      .attr("class", "states")
-      .attr("d", path);
-}
+  svg.selectAll(".state")
+      .data(topojson.feature(us, us.objects.states).features)
+    .enter().append("path")
+      .attr("class", "state")
+      .attr("d", path)
+      .attr("transform", function(d) {
+        var centroid = path.centroid(d),
+            x = centroid[0],
+            y = centroid[1];
+        return "translate(" + x + "," + y + ")"
+            + "scale(" + Math.sqrt(valueById[d.id] * 5 || 0) + ")"
+            + "translate(" + -x + "," + -y + ")";
+      })
+      .style("stroke-width", function(d) {
+        return 1 / Math.sqrt(valueById[d.id] * 5 || 1);
+      });
+});
 
 </script>
