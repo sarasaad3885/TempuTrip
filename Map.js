@@ -1,4 +1,3 @@
-//var data = [4, 8, 15, 16, 23, 42];
 
 var data = [82];
 var data1 = [80];
