@@ -7,126 +7,121 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="help.css">
+    <link rel="stylesheet" type="text/css" href="Data.css">
+	
+    <!-- React. -->
+    <meta charset="UTF-8" />
     <title>TempuTrip</title>
-
-
-<script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
-<script src="https://cdn.firebase.com/libs/angularfire/0.8.0/angularfire.min.js"></script>
-<script src="https://cdn.firebase.com/js/simple-login/1.6.2/firebase-simple-login.js"></script>
-<script>
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyAXfiPb7lxRd85RpS5WYIIxzwvHvO_ZTOE",
-    authDomain: "temputrip.firebaseapp.com",
-    databaseURL: "https://TempuTrip.firebaseio.com",
-    storageBucket: "temputrip.appspot.com",
-    messagingSenderId: "423687763023"
-  };
-  firebase.initializeApp(config);
-</script>
-
+    <script type="text/babel" src="login.jsx"></script>
+    <script type="text/babel" src="Timer.js"></script>
+    <script type="text/babel" src="greeting.jsx"></script>
+    <script type="text/babel" src="datagrid.js"></script>
+    <script src="build/react.js"></script>
+    <script src="build/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-core@5.8.38/browser.min.js"></script>
+	
+    <!-- Firebase. -->
+    <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
+    <script src="init.js"></script>
+    <script src="log.js"></script>
+ 
     <script src="jquery-3.1.0.js"></script>
+
     <script>
         $(document).ready(function () {
             $("form").submit(function () {
                 var val = $("input[type=submit][clicked=true]").val();
+                $(location).attr('href', 'Landing.html');
             });
+
             $("form input[type=submit]").click(function () {
                 $("input[type=submit]", $(this).parents("form")).removeAttr("clicked");
                 $(this).attr("clicked", "true");
+                $(location).attr('href', 'Landing.html');
             });
         });
+
         function goBack() {
             $("#login").hide().css("visibility", "hidden");
             $("#home").show().css("visibility", "visible");
         }
-        function goLogin(){
+
+        function goLogin() {
             $("#home").hide().css("visibility", "hidden");
             $("#login").show().css("visibility", "visible");
         }
+     
     </script>
 
 </head>
+	
 <body>
- var Firebase = require("firebase");
-  var firebaseObj = new Firebase("https:TempuTrip.firebaseio.com"); 
- 
- angular.module('myApp.home', ['ngRoute','firebase'])
- 
-$scope.SignIn = function(event) {
-    event.preventDefault();  // To prevent form refresh
-    var username = $scope.user.email;
-    var password = $scope.user.password;
-     
-    loginObj.$login('password', {
-            email: username,
-            password: password
-        })
-        .then(function(user) {
-            // Success callback
-            console.log('Authentication successful');
-        }, function(error) {
-            // Failure callback
-            console.log('Authentication failure');
-        });
-}
- 
-<body ng-controller="HomeCtrl">
- 
-    <div class="container">
-        <div class="jumbotron" style="padding-bottom:0px;">
-            <h2>AngularJS & Firebase App!</h2>
-        </div>
-        <form class="form-signin" role="form">
-            <input ng-model="user.email" type="email" class="form-control" placeholder="Email address" required="" autofocus="">
-            <input ng-model="user.password" type="password" class="form-control" placeholder="Password" required="">
-            <label class="checkbox">
-                <a href="#"> Sign Up</>
-        </label>
-        <button type="button" class="btn btn-lg btn-primary btn-block">SignIn</button>
-      </form>
- 
-    </div>
- 
-   
- 
-</body>
- 
- <button type="button" ng-click="SignIn($event)" class="btn btn-lg btn-primary btn-block">SignIn</button>
 
- 
+<div id="todoItems"></div>
+
+<br/><br/>
+
+<div id="sentiments"></div>
+	
+
+
 <button onclick="goBack()" id="back">Go Back</button>
 
 <div class="inthe">
 
     <header>
-        <h1 class="center"> Welcome to TempuTrip! </h1>
+	<h1 class="center"> Welcome to TempuTrip! </h1>
         <p class="center"><b>The best place to go to find out where to vacation!</b></p>
     </header>
+
     <div class="center" id="home">
         <p>Please login</p>
         <!--<a href="#" id="next"><img src="image/login.png" alt="login" class="enlargeimage"></a>-->
         <button onclick="goLogin()" id="next"><img src="image/login.png" alt="login" class="enlargeimage"></button>
     </div>
+	
 
     <div class="center" id="login">
         <p class="center">Simply pick an area and time and we'll tell you where the best place based on weather will be
             to go.</p>
-        <form action="landing.html">
-
-            <label for="email">Your email address:</label>
+        <form action = "Landing.html"> <!--  action="landing.html" -->
+		
+	    <div id="logincontainer">
+            <!-- The button Register will make the registration buttons show up. -->
+	    </div>
+		
+	    <label for="email">Your email address:</label>
             <input id="email" name="email" type="email" placeholder="abc@cdf.com">
 
-            <br/>
-
-            <label for="pass">Password:</label>
-            <input id="pass" name="pass" type="password">
-
-            <input type="submit" value="login">
-
+    	    <label for="pass">Password:</label>
+            <input id="pass" name="pass" type="password">     
+		
+	    <div id="todoItems"></div>
+            <button id="#auth">Login</button>
+            <br/><br/>
+            <div id="sentiments"></div>  
+		
+		
+		
+	    <div id="container">
+            <!-- The button Register will make the registration buttons show up. -->
+	    </div>
+		
+		<div id="containe">
+    		<!-- This element's contents will be replaced with your component. -->
+		</div>
+		
+            <br/>          
+         
+    	<p id="print" style="display:none;" >testval</p>
+        
         </form>
+     
     </div>
-
+	
+	
+	
+    
     <footer>
         <address>
             <p class="center">This site is developed by
@@ -140,4 +135,5 @@ $scope.SignIn = function(event) {
 </div>
 
 </body>
+ 
 </html>
