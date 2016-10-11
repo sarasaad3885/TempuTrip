@@ -1,142 +1,82 @@
 <!DOCTYPE html>
+<meta charset="utf-8">
+<style>
 
-<!-- This page is a starting page. It will ask user to login.
- TODO: we should show some general info from weather channel. -->
+svg,
+#tiles {
+  position: absolute;
+  width: 960px;
+  height: 600px;
+  overflow: hidden;
+}
 
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="help.css">
-    <link rel="stylesheet" type="text/css" href="Data.css">
+</style>
+<div id="tiles"></div>
+<svg width="960" height="600"></svg>
+<script src="//d3js.org/d3.v4.min.js"></script>
+<script src="//d3js.org/d3-tile.v0.0.min.js"></script>
+<script src="//d3js.org/topojson.v1.min.js"></script>
+<script>
 
-    <!-- React. -->
-    <meta charset="UTF-8" />
-    <title>TempuTrip</title>
-    <script type="text/babel" src="login.jsx"></script>
-    <script type="text/babel" src="Timer.js"></script>
-    <script type="text/babel" src="greeting.jsx"></script>
-    <script type="text/babel" src="datagrid.js"></script>
-    <script src="build/react.js"></script>
-    <script src="build/react-dom.js"></script>
-    <script src="https://unpkg.com/babel-core@5.8.38/browser.min.js"></script>
-	
-    <!-- D3. -->
-    <script src="https://d3js.org/d3.v4.min.js"></script>
-	
-    <!-- Firebase. -->
-    <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
-    <script src="init.js"></script>
-    <script src="log.js"></script>
- 
-    <script src="jquery-3.1.0.js"></script>
+var pi = Math.PI,
+    tau = 2 * pi;
 
-    <script>
-        $(document).ready(function () {
-            $("form").submit(function () {
-                var val = $("input[type=submit][clicked=true]").val();
-                $(location).attr('href', 'Landing.html');
-            });
+var svg = d3.select("svg"),
+    width = +svg.attr("width"),
+    height = +svg.attr("height");
 
-            $("form input[type=submit]").click(function () {
-                $("input[type=submit]", $(this).parents("form")).removeAttr("clicked");
-                $(this).attr("clicked", "true");
-                $(location).attr('href', 'Landing.html');
-            });
-        });
+// Initialize the projection to fit the world in a 1×1 square centered at the origin.
+var projection = d3.geoMercator()
+    .scale(1 / tau)
+    .translate([0, 0]);
 
-        function goBack() {
-            $("#login").hide().css("visibility", "hidden");
-            $("#home").show().css("visibility", "visible");
-        }
+// Compute the projected bounding box given a geographic bounding box (here, California).
+// This assumes parallels are horizontal and meridians are vertical…
+// but you could use path.bounds to handle arbitrary shapes.
+// Note that the y-dimension is flipped relative to latitude!
+var bounds = [[-124.408585, 32.534291], [-114.138271, 42.007768]],
+    p0 = projection([bounds[0][0], bounds[1][1]]),
+    p1 = projection([bounds[1][0], bounds[0][1]]);
 
-        function goLogin() {
-            $("#home").hide().css("visibility", "hidden");
-            $("#login").show().css("visibility", "visible");
-        }
-     
-    </script>
+// Convert this to a scale k and translate tx, ty for the projection.
+// For crisp image tiles, clamp to the nearest power of two.
+var k = floor(0.95 / Math.max((p1[0] - p0[0]) / width, (p1[1] - p0[1]) / height)),
+    tx = (width - k * (p1[0] + p0[0])) / 2,
+    ty = (height - k * (p1[1] + p0[1])) / 2;
 
-</head>
-	
-<body>
+projection
+    .scale(k / tau)
+    .translate([tx, ty]);
 
-<div id="todoItems"></div>
+// Lastly convert this to the corresponding tile.scale and tile.translate;
+// see http://bl.ocks.org/mbostock/4150951 for a related example.
+var tiles = d3.tile()
+    .size([width, height])
+    .scale(k)
+    .translate([tx, ty])
+    ();
 
-<br/><br/>
+d3.select("#tiles")
+  .selectAll("img").data(tiles).enter().append("img")
+    .style("position", "absolute")
+    .attr("src", function(d, i) { return "http://" + "abc"[d[1] % 3] + ".tile.openstreetmap.org/" + d[2] + "/" + d[0] + "/" + d[1] + ".png"; })
+    .style("left", function(d) { return (d[0] + tiles.translate[0]) * tiles.scale + "px"; })
+    .style("top", function(d) { return (d[1] + tiles.translate[1]) * tiles.scale + "px"; })
+    .attr("width", tiles.scale)
+    .attr("height", tiles.scale);
 
-<div id="sentiments"></div>
-	
+d3.json("/mbostock/raw/4090846/us.json", function(error, us) {
+  if (error) throw error;
 
+  svg.append("path")
+      .datum(topojson.mesh(us, us.objects.states))
+      .attr("d", d3.geoPath().projection(projection))
+      .attr("fill", "none")
+      .attr("stroke", "#000");
+});
 
-<button onclick="goBack()" id="back">Go Back</button>
+function floor(k) {
+  return Math.pow(2, Math.floor(Math.log(k) / Math.LN2));
+}
 
-<div class="inthe">
-
-    <header>
-	<h1 class="center"> Welcome to TempuTrip! </h1>
-        <p class="center"><b>The best place to go to find out where to vacation!</b></p>
-    </header>
-
-    <div class="center" id="home">
-        <p>Please login</p>
-        <!--<a href="#" id="next"><img src="image/login.png" alt="login" class="enlargeimage"></a>-->
-        <button onclick="goLogin()" id="next"><img src="image/login.png" alt="login" class="enlargeimage"></button>
-    </div>
-	
-
-    <div class="center" id="login">
-        <p class="center">Simply pick an area and time and we'll tell you where the best place based on weather will be
-            to go.</p>
-        <form action = "Landing.html"> <!--  action="landing.html" -->
-		
-	    <div id="logincontainer">
-            <!-- The button Register will make the registration buttons show up. -->
-	    </div>
-		
-	    <label for="email">Your email address:</label>
-            <input id="email" name="email" type="email" placeholder="abc@cdf.com">
-
-    	    <label for="pass">Password:</label>
-            <input id="pass" name="pass" type="password">     
-		
-	    <div id="todoItems"></div>
-            <button id="#auth">Login</button>
-            <br/><br/>
-            <div id="sentiments"></div>  
-		
-		
-		
-	    <div id="container">
-            <!-- The button Register will make the registration buttons show up. -->
-	    </div>
-		
-		<div id="containe">
-    		<!-- This element's contents will be replaced with your component. -->
-		</div>
-		
-            <br/>          
-         
-    	<p id="print" style="display:none;" >testval</p>
-        
-        </form>
-     
-    </div>
-	
-	
-	
-    
-    <footer>
-        <address>
-            <p class="center">This site is developed by
-                <a href="mailto:sborghei@gmu.edu">Sara Borghei</a>
-                and
-                <a href="mailto:ssaad2@gmu.edu">Sara Saad</a>
-            </p>
-        </address>
-    </footer>
-
-</div>
-
-</body>
- 
-</html>
+</script>
