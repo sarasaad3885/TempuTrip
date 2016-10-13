@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<!--
+Created using JS Bin
+http://jsbin.com
+
+Copyright (c) 2016 by anonymous (http://jsbin.com/tadudewiyo/1/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+<meta name="robots" content="noindex">
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+  
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  
+  <style id="jsbin-css">
+.chart div {
+  font: 10px sans-serif;
+  background-color: steelblue;
+  text-align: right;
+  padding: 3px;
+  margin: 1px;
+  color: white;
+}
+
+.chart1 div {
+  font: 10px sans-serif;
+  background-color: steelblue;
+  text-align: right;
+  padding: 3px;
+  margin: 1px;
+  color: white;
+}
+
+
+.chart2 div {
+  font: 10px sans-serif;
+  background-color: steelblue;
+  text-align: right;
+  padding: 3px;
+  margin: 1px;
+  color: white;
+}
+
+
+.chart3 div {
+  font: 10px sans-serif;
+  background-color: steelblue;
+  text-align: right;
+  padding: 3px;
+  margin: 1px;
+  color: white;
+}
+</style>
+</head>
+<body>
+  
+  <h1>You should go to California!</h1>
+  
+  <p>Weather in different cities:</p>
+  
+  <p1>San Fransisco</p1>
+  <div class="chart"></div>
+  <br/>
+  <p1>Sacremento</p1>
+  <div class="chart1"></div>
+  <br/>
+  <p1>San Diego</p1>
+  <div class="chart2"></div>
+  <br/>
+  <p1>Los Angelos</p1>
+  <div class="chart3"></div>
+ 
+
+<script id="jsbin-javascript">
+var data = [82];
+var data1 = [80];
+var data2 = [78];
+var data3 = [70];
+
+d3.select(".chart")
+  .selectAll("div")
+    .data(data)
+  .enter().append("div")
+    .style("width", function(d) 
+           { return d * 2 + "px"; })
+    .text(function(d) { return d; });
+
+d3.select(".chart1")
+  .selectAll("div")
+    .data(data1)
+  .enter().append("div")
+    .style("width", function(d) 
+           { return d * 2 + "px"; })
+    .text(function(d) { return d; });
+
+d3.select(".chart2")
+  .selectAll("div")
+    .data(data2)
+  .enter().append("div")
+    .style("width", function(d) 
+           { return d * 2 + "px"; })
+    .text(function(d) { return d; });
+
+d3.select(".chart3")
+  .selectAll("div")
+    .data(data3)
+  .enter().append("div")
+    .style("width", function(d) 
+           { return d * 2 + "px"; })
+    .text(function(d) { return d; });
+</script>
+</body>
+
+  
+</html>

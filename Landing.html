@@ -15,6 +15,9 @@ TODO: The result should merge with weather data, another scenario. -->
      
     <meta charset="UTF-8" />
     <title>TempuTrip</title>
+	
+     <!-- D3. -->
+    <script src="https://d3js.org/d3.v4.min.js"></script>
 
     <script type="text/lessl">
         "use strict";
@@ -154,9 +157,20 @@ TODO: The result should merge with weather data, another scenario. -->
                <!-- Input the cities you'd like to travel to. -->
           </div>
 
-              <form action = "Data.js"> 
+	    <br/>
+	    
+		<form action = "choropleth.html"> 
 		       <div id="results"></div>
-           		 <button>See Results in Table</button>
+           		 <button>See Results in Map</button>
+           	 <br/><br/>
+          		  <div id="sentiments"></div> 
+		</form>
+	
+	    <br/>
+	    
+              <form action = "Map.html"> 
+		       <div id="results"></div>
+           		 <button>See Results in Chart</button>
            	 <br/><br/>
           		  <div id="sentiments"></div> 
 		</form>
