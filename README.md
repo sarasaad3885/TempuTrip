@@ -10,3 +10,5 @@
 
 # The two scenarios currently implemented are: scenraio 1 (registration), and scenario 3 (searching).
 # The third implemented scenario is scenario 4 (input).
+# The fourth implemented scenario is: scenario 2 (browsing) using D3.js.
+# Scenario 4 was already in React.
