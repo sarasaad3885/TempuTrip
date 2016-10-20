@@ -19,7 +19,7 @@ describe('MyComponent', function() {
   
  
   var Utils = React.addons.TestUtils;
- beforeEach(function(done){
+
   it('can render without error', function() {
     var component, element;
     // First we create an element, which is a description of the component we
@@ -28,10 +28,10 @@ describe('MyComponent', function() {
     // for testing by itself)
     element = React.createElement(
       MyComponent, // component class
-      {} // props go here
+      {map} // props go here
       // You can also add children here as the last argument
     );
-  }
+  
     // Render into a document fragment and return the full component instance.
     // You'll generally be testing `component`'s behavior in the rest of your
     // test.
