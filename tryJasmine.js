@@ -1,45 +1,23 @@
-describe("Investment", function () {
-    var stock, investment;
+describe('MyComponent', function() {
+  var Utils = React.addons.TestUtils;
 
-    beforeEach(function () {
-        stock = {
-            symbol: "AAPL", sharePrice: 4, fetch: function (success) {
-                var _t = this;
-                window.setTimeout(function(){
-                    _t.sharePrice = 23.67;
-                    success.success();
-                },2000);
-            }
-        };
-        investment = {
-            stock: stock,
-            shares: 100,
-            sharePrice: 20
-        };
-    });
+  it('can render without error', function() {
+    var component, element;
+    // First we create an element, which is a description of the component we
+    // would like to render (It has no methods, see:
+    // https://facebook.github.io/react/docs/glossary.html so it isn't useful
+    // for testing by itself)
+    element = React.createElement(
+      MyComponent, // component class
+      {} // props go here
+      // You can also add children here as the last argument
+    );
 
-    it("should be of a stock", function () {
-        expect(investment.stock).toBe(stock);
-    });
-
-    describe("should be able to update its share price", function () {
-        var fetched = false;
-        beforeEach(function(done){
-            spyOn(stock,"fetch").and.callFake(function(param)
-            {
-                this.sharePrice = 23.67;
-                done();
-            });
-            stock.fetch({
-                success: function () {
-                    fetched = true;
-                    done();
-                }
-            });
-
-        });
-        it("will get the updated price eventually", function(){
-            expect(stock.sharePrice).toEqual(23.67);
-        });
-    });
-});
+    // Render into a document fragment and return the full component instance.
+    // You'll generally be testing `component`'s behavior in the rest of your
+    // test.
+    expect(function() {
+      component = Utils.renderIntoDocument(element);
+    }).not.toThrow();
+  });
+})
