@@ -1,87 +1,45 @@
-describe("jasmineReact", function(){
+describe("Investment", function () {
+    var stock, investment;
 
-  describe("top level environment", function(){
-    it("should define one global object called 'jasmineReact'", function(){
-      expect(window.jasmineReact).toBeDefined();
-    });
-  });
-
-  describe("render", function(){
-    var FooKlass;
-
-    beforeEach(function(){
-      FooKlass = React.createClass({
-        render: function(){
-          return React.DOM.div({});
-        }
-      });
-
-      spyOn(React, "render").andCallThrough();
-    });
-
-    it("should call React.render with the passed in component", function(){
-      jasmineReact.render(<FooKlass foo="bar" />, document.getElementById("Select"));
-
-      var renderArgs = React.render.mostRecentCall.args[0];
-
-      expect(renderArgs.props.foo).toBe("bar");
+    beforeEach(function () {
+        stock = {
+            symbol: "AAPL", sharePrice: 4, fetch: function (success) {
+                var _t = this;
+                window.setTimeout(function(){
+                    _t.sharePrice = 23.67;
+                    success.success();
+                },2000);
+            }
+        };
+        investment = {
+            stock: stock,
+            shares: 100,
+            sharePrice: 20
+        };
     });
 
-    it("should call React.render with the passed in container", function(){
-      var container = document.getElementById("Select");
-      jasmineReact.render(<FooKlass />, container);
-
-      expect(React.render).toHaveBeenCalledWith(jasmine.any(Object), container);
+    it("should be of a stock", function () {
+        expect(investment.stock).toBe(stock);
     });
 
-    it("should call React.render with #Select container if no container is passed in", function(){
-      jasmineReact.render(<FooKlass />);
+    describe("should be able to update its share price", function () {
+        var fetched = false;
+        beforeEach(function(done){
+            spyOn(stock,"fetch").and.callFake(function(param)
+            {
+                this.sharePrice = 23.67;
+                done();
+            });
+            stock.fetch({
+                success: function () {
+                    fetched = true;
+                    done();
+                }
+            });
 
-      expect(React.render).toHaveBeenCalledWith(jasmine.any(Object), document.getElementById("Select"));
+        });
+        it("will get the updated price eventually", function(){
+            expect(stock.sharePrice).toEqual(23.67);
+        });
     });
-
-    it("should call React.render with a callback if one is passed in", function(){
-      var fakeCallbackSpy = jasmine.createSpy("fakeCallback");
-
-      jasmineReact.render(<FooKlass />, document.getElementById("Select"), fakeCallbackSpy);
-
-      expect(React.render).toHaveBeenCalledWith(jasmine.any(Object), jasmine.any(Object), fakeCallbackSpy);
-    });
-
-    it("should return the return value of React.render", function(){
-      var returnValue = jasmineReact.render(<FooKlass baz="bat" />, document.getElementById("Select"));
-
-      expect(returnValue.props.baz).toBe("bat");
-    });
-
-    it("should alias jasmineReact.renderComponent to jasmineReact.render", function(){
-      var returnValue = jasmineReact.renderComponent(<FooKlass baz="bat" />, document.getElementById("Select"));
-
-      expect(returnValue.props.baz).toBe("bat");
-    });
-  });
-
-  describe("render: test pollution", function(){
-    it("should not pollute a rendered component from one test into another test", function(){
-      var CoolKlass = React.createClass({
-        render: function(){
-          return React.DOM.div({
-            id: "really-cool"
-          });
-        }
-      });
-
-      // lets pretend this is test #1
-      jasmineReact.render(<CoolKlass />);
-
-      expect(document.getElementById("really-cool")).toBeDefined();
-
-      // this is the method in the afterEach which is needed to prevent test pollution for render
-      jasmineReact.unmountAllRenderedComponents();
-
-      // lets pretend this is test #1
-      expect(document.getElementById("really-cool")).toBeNull();
-    });
-  });
-
-  
+});
