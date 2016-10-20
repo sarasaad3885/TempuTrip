@@ -17,9 +17,9 @@ describe("A suite is just a function", function() {
 
 describe('MyComponent', function() {
   
-  beforeEach(function(done){
+ 
   var Utils = React.addons.TestUtils;
-
+ beforeEach(function(done){
   it('can render without error', function() {
     var component, element;
     // First we create an element, which is a description of the component we
