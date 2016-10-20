@@ -41,7 +41,8 @@ describe("Investment", function () {
         it("will get the updated price eventually", function(){
             expect(stock.sharePrice).toEqual(23.67);
         });
-   describe("render", function(){
+    });
+    describe("render", function(){
     var FooKlass;
 
     beforeEach(function(){
@@ -60,6 +61,5 @@ describe("Investment", function () {
       var renderArgs = React.render.mostRecentCall.args[0];
 
       expect(renderArgs.props.foo).toBe("bar");
-    });
     });
 });
