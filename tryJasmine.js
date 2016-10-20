@@ -14,7 +14,10 @@ describe("A suite is just a function", function() {
   });
 });
 
+
 describe('MyComponent', function() {
+  
+  beforeEach(function(done){
   var Utils = React.addons.TestUtils;
 
   it('can render without error', function() {
@@ -28,7 +31,7 @@ describe('MyComponent', function() {
       {} // props go here
       // You can also add children here as the last argument
     );
-
+  }
     // Render into a document fragment and return the full component instance.
     // You'll generally be testing `component`'s behavior in the rest of your
     // test.
