@@ -55,7 +55,7 @@ describe("Investment", function () {
     });
 
     it("should call React.render with the passed in component", function(){
-      jasmineReact.render(<FooKlass foo="bar" />, document.getElementById("jasmine_content"));
+      jasmineReact.render(<FooKlass foo="bar" />, document.getElementById("login"));
 
       var renderArgs = React.render.mostRecentCall.args[0];
 
