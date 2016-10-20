@@ -1,3 +1,9 @@
+describe("A suite", function() {
+  it("contains spec with an expectation", function() {
+    expect(true).toBe(true);
+  });
+});
+
 describe('MyComponent', function() {
   var Utils = React.addons.TestUtils;
 
