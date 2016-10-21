@@ -1,32 +1,40 @@
-describe("A suite", function() {
-  it("contains spec with an expectation", function() {
-    expect(true).toBe(true);
-  });
-});
+describe("jasmineReact", function(){
 
-describe("A suite is just a function", function() {
-  var a;
-
-  it("and so is a spec", function() {
-    a = true;
-
-    expect(a).toBe(true);
-  });
-});
-
-describe("A spec", function() {
-  it("is just a function, so it can contain any code", function() {
-    var foo = 0;
-    foo += 1;
-
-    expect(foo).toEqual(1);
+  describe("top level environment", function(){
+    it("should define one global object called 'jasmineReact'", function(){
+      expect(window.jasmineReact).toBeDefined();
+    });
   });
 
-  it("can have more than one expectation", function() {
-    var foo = 0;
-    foo += 1;
+  describe("render", function(){
+    var FooKlass;
 
-    expect(foo).toEqual(1);
-    expect(true).toEqual(true);
+    beforeEach(function(){
+      FooKlass = React.createClass({
+        render: function(){
+          return React.DOM.div({});
+        }
+      });
+
+      spyOn(React, "render").andCallThrough();
+    });
+
+    it("should call React.render with the passed in component", function(){
+      jasmineReact.render(Home, document.getElementById("Home"));
+
+      var renderArgs = React.render.mostRecentCall.args[0];
+
+      expect(renderArgs.props.foo).toBe("bar");
+    });
+
+    it("should call React.render with the passed in container", function(){
+      var container = document.getElementById("Home");
+      jasmineReact.render(Home, container);
+
+      expect(React.render).toHaveBeenCalledWith(jasmine.any(Object), container);
+    });
+
+
   });
+
 });
