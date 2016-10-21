@@ -1,3 +1,5 @@
+import React from 'react';
+
 var Home = React.createClass({
     render: function() {
         return (
@@ -97,5 +99,6 @@ var Home = React.createClass({
     }
 });
 
+export default Home;
 
 ReactDOM.render(<TodoApp />, document.getElementById('home2'));
