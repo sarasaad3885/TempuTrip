@@ -1,3 +1,5 @@
+var ReactTestUtils = require('react-addons-test-utils');
+
 var Home = React.createClass({
     render: function() {
         return (
