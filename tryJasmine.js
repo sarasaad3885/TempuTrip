@@ -1,10 +1,10 @@
 describe("jasmineReact", function(){
 
   describe("render", function(){
-    var FooKlass;
+    var Home;
 
     beforeEach(function(){
-      FooKlass = React.createClass({
+      Home = React.createClass({
         render: function(){
           return React.DOM.div({});
         }
@@ -14,7 +14,7 @@ describe("jasmineReact", function(){
     });
 
     it("should call React.render with the passed in component", function(){
-      jasmineReact.render(<FooKlass foo="bar" />, document.getElementById("Home"));
+      jasmineReact.render(<Home foo="bar" />, document.getElementById("Home"));
 
       var renderArgs = React.render.mostRecentCall.args[0];
 
