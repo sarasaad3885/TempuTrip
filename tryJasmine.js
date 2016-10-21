@@ -1,4 +1,4 @@
-describe("Test the Subscribe element", function () {
+describe("Test the main banner element", function () {
     beforeEach(function () {
         ReactDOM.render(React.createElement(Subscribe, {
             text: paragraph,
@@ -25,9 +25,9 @@ describe("Test the Subscribe element", function () {
     });
 });
 
-var paragraph = "We appreciate your interest.  Please enter your email in the box below, then submit the form, and you will be subscribed to our newsletter.";
+var paragraph = "Sorry for inconvenience, but the image is unavailable.";
 
-var thankYou = "Thank you for registering.  We are excited to send you your first newsletter shortly.";
+var thankYou = "Thank you for visiting our webiste.";
 
 var Subscribe = React.createClass({
     displayName: "Subscribe",
