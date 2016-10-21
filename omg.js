@@ -1,16 +1,16 @@
-describe("jasmineReact", function(){
+describe("jasmine", function(){
 
-  describe("top level environment", function(){
-    it("should define one global object called 'jasmineReact'", function(){
-      expect(window.jasmineReact).toBeDefined();
+  describe("the test", function(){
+    it("should have one high level test called'jasmine'", function(){
+      expect(window.jasmine).toBeDefined();
     });
   });
 
   describe("render", function(){
-    var FooKlass;
+    var Home;
 
     beforeEach(function(){
-      FooKlass = React.createClass({
+      Home = React.createClass({
         render: function(){
           return React.DOM.div({});
         }
@@ -19,12 +19,12 @@ describe("jasmineReact", function(){
       spyOn(React, "render").andCallThrough();
     });
 
-    it("should call React.render with the passed in component", function(){
-      jasmineReact.render(Home, document.getElementById("Home"));
+    it("should call the renderer", function(){
+      jasmine.render(Home, document.getElementById("Home"));
 
       var renderArgs = React.render.mostRecentCall.args[0];
 
-      expect(renderArgs.props.foo).toBe("bar");
+      expect(renderArgs.props.foo).toBe("home");
     });
 
 
