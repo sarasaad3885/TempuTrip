@@ -13,8 +13,8 @@ describe("jasmineReact", function(){
       spyOn(React, "render").andCallThrough();
     });
 
-    expect(h1.getDOMNode().textContent)
-   .toEqual("A title");
+    expect(main-banner.getDOMNode().textContent)
+   .toEqual("A div");
     
     
     it("should call React.render with the passed in component", function(){
