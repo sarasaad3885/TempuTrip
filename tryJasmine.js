@@ -14,7 +14,7 @@ describe("jasmineReact", function(){
     });
 
     it("should call React.render with the passed in component", function(){
-      jasmineReact.render(<Home foo="bar" />, document.getElementById("Home"));
+      jasmineReact.render(<Home />, document.getElementById("Home"));
 
       var renderArgs = React.render.mostRecentCall.args[0];
 
