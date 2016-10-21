@@ -24,6 +24,7 @@ describe("jasmineReact", function(){
 
       expect(renderArgs.props.foo).toBe("bar");
     });
-});
+
+  });
   
 });
