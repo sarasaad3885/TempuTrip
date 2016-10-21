@@ -98,4 +98,4 @@ var Home = React.createClass({
 });
 
 
-ReactDOM.render(<TodoApp />, document.getElementById('home2'));
+ReactDOM.render(<Home />, document.getElementById('home2'));
