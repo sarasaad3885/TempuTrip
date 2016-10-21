@@ -1,0 +1,14 @@
+#main-banner-img {
+    width: 100%;
+    border: 2px solid DarkGray;
+}
+
+.box-stub-h3 {
+    border-top: 4px solid #9fd175;
+    color: #252e42;
+}
+
+#validation {
+    color: red;
+    font-style: italic;
+}
