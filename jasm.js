@@ -24,4 +24,4 @@ describe('box-stub-h3', function () {
         
         });
 
-    });
+
