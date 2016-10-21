@@ -4,24 +4,24 @@ describe("Test the Subscribe element", function () {
             text: paragraph,
             disabled: false,
             label: 'Submit'
-        }), document.getElementById('submitEmail'));
+        }), document.getElementById('main-banner'));
     });
 
     afterEach(function (){
-        $('#submitEmail').empty();
+        $('#main-banner').empty();
     });
     
     it("Defaults correctly", function () {
-        expect($('#submitEmail p').text()).toEqual(paragraph);
-        expect($('#submitEmail button').text()).toEqual('Submit');
-        expect($('#submitEmail button').attr('disabled')).not.toBeDefined();
+        expect($('#main-banner p').text()).toEqual(paragraph);
+        expect($('#main-banner button').text()).toEqual('Submit');
+        expect($('#main-banner button').attr('disabled')).not.toBeDefined();
     });
 
     it("onClick updates elements", function () {
-        $('#submitEmail button').click();
-        expect($('#submitEmail p').text()).toEqual(thankYou);
-        expect($('#submitEmail button').text()).toEqual('Thank You');
-        expect($('#submitEmail button').attr('disabled')).toEqual('disabled');
+        $('#main-banner button').click();
+        expect($('#main-banner p').text()).toEqual(thankYou);
+        expect($('#main-banner button').text()).toEqual('Thank You');
+        expect($('#main-banner button').attr('disabled')).toEqual('disabled');
     });
 });
 
