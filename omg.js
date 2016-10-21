@@ -27,13 +27,6 @@ describe("jasmineReact", function(){
       expect(renderArgs.props.foo).toBe("bar");
     });
 
-    it("should call React.render with the passed in container", function(){
-      var container = document.getElementById("Home");
-      jasmineReact.render(Home, container);
-
-      expect(React.render).toHaveBeenCalledWith(jasmine.any(Object), container);
-    });
-
 
   });
 
