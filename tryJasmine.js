@@ -9,8 +9,6 @@ describe("jasmineReact", function(){
           return React.DOM.div({});
         }
       });
-
-  
     });
 
     expect(main-banner.getDOMNode().textContent)
