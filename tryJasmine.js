@@ -31,7 +31,6 @@ var Subscribe = React.createClass({
             disabled: true
         });
     },
-    console.log("fml");
     componentWillMount (){
     	this.setState({
             text: this.props.text,
