@@ -18,12 +18,6 @@ describe("Test the main banner element", function () {
         expect($('#main-banner button').attr('disabled')).not.toBeDefined();
     });
 
-    it("onClick updates elements", function () {
-        $('#main-banner button').click();
-        expect($('#main-banner p').text()).toEqual(thankYou);
-        expect($('#main-banner button').text()).toEqual('Thank You');
-        expect($('#main-banner button').attr('disabled')).toEqual('disabled');
-    });
 });
 
 console.log("fml");
