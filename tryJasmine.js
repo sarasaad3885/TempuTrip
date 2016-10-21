@@ -3,7 +3,6 @@ describe("Test the main banner element", function () {
         ReactDOM.render(React.createElement(Subscribe, {
             text: paragraph,
             disabled: false,
-            label: 'Submit'
         }), document.getElementById('main-banner'));
     });
 
@@ -13,7 +12,6 @@ describe("Test the main banner element", function () {
     
     it("Defaults correctly", function () {
         expect($('#main-banner p').text()).toEqual(paragraph);
-        expect($('#main-banner button').text()).toEqual('Submit');
         expect($('#main-banner button').attr('disabled')).not.toBeDefined();
     });
 });
