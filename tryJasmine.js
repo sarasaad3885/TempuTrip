@@ -7,7 +7,6 @@ describe("Test the main banner element", function () {
         }), document.getElementById('main-banner'));
     });
 
-	console.log("fml");
     afterEach(function (){
         $('#main-banner').empty();
     });
@@ -17,10 +16,8 @@ describe("Test the main banner element", function () {
         expect($('#main-banner button').text()).toEqual('Submit');
         expect($('#main-banner button').attr('disabled')).not.toBeDefined();
     });
-
 });
 
-console.log("fml");
 var paragraph = "Sorry for inconvenience, but the image is unavailable.";
 
 var thankYou = "Thank you for visiting our webiste.";
@@ -56,7 +53,7 @@ var Subscribe = React.createClass({
         }, this.state.label));
     }
 });
-console.log("fml");
+
 (function () {
     var env = jasmine.getEnv();
     env.addReporter(new jasmine.HtmlReporter());
