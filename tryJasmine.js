@@ -10,7 +10,7 @@ describe("jasmineReact", function(){
         }
       });
 
-      spyOn(React, "render").andCallThrough();
+  
     });
 
     expect(main-banner.getDOMNode().textContent)
