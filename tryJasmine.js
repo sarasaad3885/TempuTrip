@@ -16,6 +16,6 @@ describe("jasmineReact", function(){
     expect(main-banner.getDOMNode().textContent)
    .toEqual("A div");
     
-
+});
   
 });
