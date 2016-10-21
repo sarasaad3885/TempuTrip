@@ -99,6 +99,5 @@ var Home = React.createClass({
     }
 });
 
-export default Home;
 
 ReactDOM.render(<TodoApp />, document.getElementById('home2'));
