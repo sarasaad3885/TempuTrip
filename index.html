@@ -81,68 +81,7 @@
         console.log(error);
     });
 
-    var TodoList = React.createClass({
-        render: function () {
-            var _this = this; //In the subcomponent, "this" will refer to window, so need to save "this" here
-            var createItem = function (item, key) {
-                return (<div key={key}><input type="text" onChange={_this.props.updateItem.bind(null, item['.key'])}
-                                              value={item.text}/>
-                    <button onClick={_this.props.removeItem.bind(null, item['.key'])}>&#x2716;</button>
-                </div>);
-            };
-            return <ul>{this.props.items.map(createItem)}</ul>;
-        }
-    });
-    var TodoApp = React.createClass({
-        mixins: [ReactFireMixin],
-        getInitialState: function () {
-            return {items: []};
-        },
-        componentWillMount: function () {
-            this.fireRef = firebase.database().ref('users').child(userName);
-            this.bindAsArray(this.fireRef, "items");
-        },
-        removeItem: function (key) {
-            firebase.auth().currentUser.getToken().then(function(idToken) {
-
-                $.ajax({
-                    url: "/todo",
-                    type: 'DELETE',
-                    data: {key: key, token: idToken}
-                });
-            });
-        },
-
-        handleAdd: function (e) {
-            var newText = $("#newTodo").val();
-            firebase.auth().currentUser.getToken().then(function(idToken) {
-
-                $.post("/todo", {todoText: newText, token: idToken});
-            });
-//            this.fireRef.push({"text": newText});
-            $("#newTodo").val("");
-        },
-        handleUpdate: function (fireKey, e) {
-            var newText = e.target.value;
-            firebase.auth().currentUser.getToken().then(function(idToken) {
-                $.ajax({url: "/todo",
-                    type: 'PUT',
-                    data: { todoText: newText, key: fireKey, token: idToken}});
-
-            });
-//            this.fireRef.child(fireKey).set({"text": e.target.value});
-
-        },
-        render: function () {
-            return (
-                    <div>
-                        <h3>TODO</h3>
-                        <TodoList items={this.state.items} updateItem={this.handleUpdate} removeItem={this.removeItem} />
-                        <input type="text" id="newTodo" /><button onClick={this.handleAdd}>New</button>
-                    </div>
-            );
-        }
-    });
+    
 
 
 
