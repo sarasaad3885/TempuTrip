@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>ReactFire Demo</title>
     <script src="https://fb.me/react-15.0.0.js"></script>
     <script src="https://fb.me/react-dom-15.0.0.js"></script>
     <script   src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
@@ -25,9 +24,7 @@
 <div id="container">
     <!-- This element's contents will be replaced with your component. -->
 </div>
-<div id="footer">
-    Debug: <span id="account-details"></span>
-</div>
+
 <script type="text/babel">
     "use strict";
   var config = {
@@ -50,20 +47,11 @@
             var photoURL = user.photoURL;
             var uid = user.uid;
             userName = user.uid;
-            ReactDOM.render(<TodoApp />, document.getElementById('container'));
+            ReactDOM.render(<React Component Here! />, document.getElementById('container'));
 
             var providerData = user.providerData;
             user.getToken().then(function(accessToken) {
                 document.getElementById('sign-in-status').textContent = "Welcome, " + displayName;
-                document.getElementById('account-details').textContent = JSON.stringify({
-                    displayName: displayName,
-                    email: email,
-                    emailVerified: emailVerified,
-                    photoURL: photoURL,
-                    uid: uid,
-                    accessToken: accessToken,
-                    providerData: providerData
-                }, null, '  ');
             });
         } else {
             console.log("Signed out");
@@ -71,13 +59,10 @@
             $("#header").hide();
             // FirebaseUI config.
             var uiConfig = {
-                'signInSuccessUrl': '/', //URL that we get sent BACK to after logging in
+                'www.google.com': '/', //URL that we get sent BACK to after logging in
                 'signInOptions': [
                     // Leave the lines as is for the providers you want to offer your users.
             firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-//            firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-//            firebase.auth.TwitterAuthProvider.PROVIDER_ID,
-//            firebase.auth.GithubAuthProvider.PROVIDER_ID,
                     firebase.auth.EmailAuthProvider.PROVIDER_ID
                 ],
                 // Terms of service url.
