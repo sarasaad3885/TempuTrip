@@ -48,7 +48,7 @@
             var photoURL = user.photoURL;
             var uid = user.uid;
             userName = user.uid;
-            ReactDOM.render(<TodoApp />, document.getElementById('container'));
+            ReactDOM.render(<ReactComponent />, document.getElementById('container'));
 
             var providerData = user.providerData;
             user.getToken().then(function(accessToken) {
