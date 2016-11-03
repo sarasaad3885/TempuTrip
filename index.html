@@ -1,147 +1,165 @@
 <!DOCTYPE html>
-
-<!-- This page is a starting page. It will ask user to login.
- TODO: we should show some general info from weather channel. -->
-
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="help.css">
-	
-    <!-- React. -->
-    <meta charset="UTF-8" />
-    <title>TempuTrip</title>
-    <script type="text/babel" src="login.jsx"></script>
-    <script type="text/babel" src="Timer.js"></script>
-    <script type="text/babel" src="greeting.jsx"></script>
-    <script type="text/babel" src="datagrid.js"></script>
-<script type="text/babel" src="Home.js"></script>
-    <script src="build/react.js"></script>
-    <script src="build/react-dom.js"></script>
-    <script src="https://unpkg.com/babel-core@5.8.38/browser.min.js"></script>
-	
-    <!-- Firebase. -->
+    <title>ReactFire Demo</title>
+    <script src="https://fb.me/react-15.0.0.js"></script>
+    <script src="https://fb.me/react-dom-15.0.0.js"></script>
+    <script   src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+    <!-- Firebase -->
     <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
-    <script src="init.js"></script>
-    <script src="log.js"></script>
- 
-    <!-- JQuery. -->
-    <script src="jquery-3.1.0.js"></script>
-	
-    <!-- Jasmine. -->
-    <link rel="stylesheet" type="text/css" href="jasmine-standalone-2.5.2/lib/jasmine-2.5.2/jasmine.css">
-    <script type="text/javascript" src="jasmine-standalone-2.5.2/lib/jasmine-2.5.2/jasmine.js"></script>
-    <script type="text/javascript" src="jasmine-standalone-2.5.2/lib/jasmine-2.5.2/jasmine-html.js"></script>
-    <script type="text/javascript" src="jasmine-standalone-2.5.2/lib/jasmine-2.5.2/boot.js"></script>
-	
-	
-    <script>
-        $(document).ready(function () {
-            $("form").submit(function () {
-                var val = $("input[type=submit][clicked=true]").val();
-                $(location).attr('href', 'Landing.html');
-            });
+    <!-- ReactFire -->
+    <script src="https://cdn.firebase.com/libs/reactfire/1.0.0/reactfire.min.js"></script>
 
-            $("form input[type=submit]").click(function () {
-                $("input[type=submit]", $(this).parents("form")).removeAttr("clicked");
-                $(this).attr("clicked", "true");
-                $(location).attr('href', 'Landing.html');
-            });
-        });
-
-        function goBack() {
-            $("#login").hide().css("visibility", "hidden");
-            $("#home").show().css("visibility", "visible");
-        }
-
-        function goLogin() {
-            $("#home").hide().css("visibility", "hidden");
-            $("#login").show().css("visibility", "visible");
-        }
-     
-    </script>
+    <!-- Firebase Auth -->
+    <script src="https://www.gstatic.com/firebasejs/ui/live/0.5/firebase-ui-auth.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/live/0.5/firebase-ui-auth.css" />
 
 </head>
-	
 <body>
-
-<div id="todoItems"></div>
-
-<br/><br/>
-
-<div id="sentiments"></div>
-	
-
-
-<button onclick="goBack()" id="back">Go Back</button>
-
-<div class="inthe">
-
-    <header>
-	<h1 class="center"> Welcome to TempuTrip! </h1>
-        <p class="center"><b>The best place to go to find out where to vacation!</b></p>
-    </header>
-
-    <div class="center" id="home">
-        <p>Please login</p>
-        <!--<a href="#" id="next"><img src="image/login.png" alt="login" class="enlargeimage"></a>-->
-        <button onclick="goLogin()" id="next"><img src="image/login.png" alt="login" class="enlargeimage"></button>
-    </div>
-	
-
-    <div class="center" id="login">
-        <p class="center">Simply pick an area and time and we'll tell you where the best place based on weather will be
-            to go.</p>
-        <form action = "Landing.html"> <!--  action="landing.html" -->
-		
-	    <div id="logincontainer">
-            <!-- The button Register will make the registration buttons show up. -->
-	    </div>
-		
-	    <label for="email">Your email address:</label>
-            <input id="email" name="email" type="email" placeholder="abc@cdf.com">
-
-    	    <label for="pass">Password:</label>
-            <input id="pass" name="pass" type="password">     
-		
-	    <div id="todoItems"></div>
-            <button id="#auth">Login</button>
-            <br/><br/>
-            <div id="sentiments"></div>  
-		
-		
-		
-	    <div id="container">
-            <!-- The button Register will make the registration buttons show up. -->
-	    </div>
-		
-		<div id="containe">
-    		<!-- This element's contents will be replaced with your component. -->
-		</div>
-		
-            <br/>          
-         
-    	<p id="print" style="display:none;" >testval</p>
-        
-        </form>
-     
-    </div>
-	
-	
-	
-    
-    <footer>
-        <address>
-            <p class="center">This site is developed by
-                <a href="mailto:sborghei@gmu.edu">Sara Borghei</a>
-                and
-                <a href="mailto:ssaad2@gmu.edu">Sara Saad</a>
-            </p>
-        </address>
-    </footer>
-
+<div id="header">
+    <span id="sign-in-status"></span> | <a href="javascript:firebase.auth().signOut()">Sign Out</a>
 </div>
+<div id="firebaseui-auth-container"></div>
+
+<div id="container">
+    <!-- This element's contents will be replaced with your component. -->
+</div>
+<div id="footer">
+    Debug: <span id="account-details"></span>
+</div>
+<script type="text/babel">
+    "use strict";
+    var config = {
+        apiKey: "AIzaSyCfUC3xfTlqPGB5TrdN5tdhPnD137lgT48",
+        authDomain: "authdemo-72a42.firebaseapp.com",
+        databaseURL: "https://authdemo-72a42.firebaseio.com",
+        storageBucket: "authdemo-72a42.appspot.com",
+        messagingSenderId: "927320192666"
+    };
+    firebase.initializeApp(config);
+
+    var userName;
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            $("#firebaseui-auth-container").hide();
+            // User is signed in.
+            var displayName = user.displayName;
+            var email = user.email;
+            var emailVerified = user.emailVerified;
+            var photoURL = user.photoURL;
+            var uid = user.uid;
+            userName = user.uid;
+            ReactDOM.render(<TodoApp />, document.getElementById('container'));
+
+            var providerData = user.providerData;
+            user.getToken().then(function(accessToken) {
+                document.getElementById('sign-in-status').textContent = "Welcome, " + displayName;
+                document.getElementById('account-details').textContent = JSON.stringify({
+                    displayName: displayName,
+                    email: email,
+                    emailVerified: emailVerified,
+                    photoURL: photoURL,
+                    uid: uid,
+                    accessToken: accessToken,
+                    providerData: providerData
+                }, null, '  ');
+            });
+        } else {
+            console.log("Signed out");
+            // User is signed out.
+            $("#header").hide();
+            // FirebaseUI config.
+            var uiConfig = {
+                'signInSuccessUrl': '/', //URL that we get sent BACK to after logging in
+                'signInOptions': [
+                    // Leave the lines as is for the providers you want to offer your users.
+            firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+//            firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+//            firebase.auth.TwitterAuthProvider.PROVIDER_ID,
+//            firebase.auth.GithubAuthProvider.PROVIDER_ID,
+//                    firebase.auth.EmailAuthProvider.PROVIDER_ID
+                ],
+                // Terms of service url.
+                'tosUrl': '<your-tos-url>',
+            };
+
+            // Initialize the FirebaseUI Widget using Firebase.
+            var ui = new firebaseui.auth.AuthUI(firebase.auth());
+            // The start method will wait until the DOM is loaded.
+            ui.start('#firebaseui-auth-container', uiConfig);
+            $("#container").hide();
+        }
+    }, function(error) {
+        console.log(error);
+    });
+
+    var TodoList = React.createClass({
+        render: function () {
+            var _this = this; //In the subcomponent, "this" will refer to window, so need to save "this" here
+            var createItem = function (item, key) {
+                return (<div key={key}><input type="text" onChange={_this.props.updateItem.bind(null, item['.key'])}
+                                              value={item.text}/>
+                    <button onClick={_this.props.removeItem.bind(null, item['.key'])}>&#x2716;</button>
+                </div>);
+            };
+            return <ul>{this.props.items.map(createItem)}</ul>;
+        }
+    });
+    var TodoApp = React.createClass({
+        mixins: [ReactFireMixin],
+        getInitialState: function () {
+            return {items: []};
+        },
+        componentWillMount: function () {
+            this.fireRef = firebase.database().ref('users').child(userName);
+            this.bindAsArray(this.fireRef, "items");
+        },
+        removeItem: function (key) {
+            firebase.auth().currentUser.getToken().then(function(idToken) {
+
+                $.ajax({
+                    url: "/todo",
+                    type: 'DELETE',
+                    data: {key: key, token: idToken}
+                });
+            });
+        },
+
+        handleAdd: function (e) {
+            var newText = $("#newTodo").val();
+            firebase.auth().currentUser.getToken().then(function(idToken) {
+
+                $.post("/todo", {todoText: newText, token: idToken});
+            });
+//            this.fireRef.push({"text": newText});
+            $("#newTodo").val("");
+        },
+        handleUpdate: function (fireKey, e) {
+            var newText = e.target.value;
+            firebase.auth().currentUser.getToken().then(function(idToken) {
+                $.ajax({url: "/todo",
+                    type: 'PUT',
+                    data: { todoText: newText, key: fireKey, token: idToken}});
+
+            });
+//            this.fireRef.child(fireKey).set({"text": e.target.value});
+
+        },
+        render: function () {
+            return (
+                    <div>
+                        <h3>TODO</h3>
+                        <TodoList items={this.state.items} updateItem={this.handleUpdate} removeItem={this.removeItem} />
+                        <input type="text" id="newTodo" /><button onClick={this.handleAdd}>New</button>
+                    </div>
+            );
+        }
+    });
+
+
+
+</script>
 
 </body>
- 	
 </html>
