@@ -11,9 +11,8 @@
     <script src="https://cdn.firebase.com/libs/reactfire/1.0.0/reactfire.min.js"></script>
 
     <!-- Firebase Auth -->
-    <script src="https://www.gstatic.com/firebasejs/ui/live/0.5/firebase-ui-auth.js"></script>
+     <script src="https://www.gstatic.com/firebasejs/ui/live/0.5/firebase-ui-auth.js"></script>
     <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/live/0.5/firebase-ui-auth.css" />
-    
     
 </head>
 <body>
@@ -28,6 +27,10 @@
 
 <script type="text/babel">
     "use strict";
+    
+
+
+  // Initialize Firebase
   var config = {
     apiKey: "AIzaSyCLBKqJmUQKYupaWHDCMn3qDv6g2VnKWDA",
     authDomain: "swe432-doctor-appointment.firebaseapp.com",
@@ -36,6 +39,7 @@
     messagingSenderId: "565789136177"
   };
   firebase.initializeApp(config);
+
 
     var userName;
     firebase.auth().onAuthStateChanged(function(user) {
@@ -48,11 +52,20 @@
             var photoURL = user.photoURL;
             var uid = user.uid;
             userName = user.uid;
-            ReactDOM.render(<React Component Here! />, document.getElementById('container'));
+            ReactDOM.render(<Container />, document.getElementById('container'));
 
             var providerData = user.providerData;
             user.getToken().then(function(accessToken) {
                 document.getElementById('sign-in-status').textContent = "Welcome, " + displayName;
+                document.getElementById('account-details').textContent = JSON.stringify({
+                    displayName: displayName,
+                    email: email,
+                    emailVerified: emailVerified,
+                    photoURL: photoURL,
+                    uid: uid,
+                    accessToken: accessToken,
+                    providerData: providerData
+                }, null, '  ');
             });
         } else {
             console.log("Signed out");
@@ -60,14 +73,14 @@
             $("#header").hide();
             // FirebaseUI config.
             var uiConfig = {
-                'www.google.com': '/', //URL that we get sent BACK to after logging in
+                'https://www.google.com': '/', //URL that we get sent BACK to after logging in
                 'signInOptions': [
                     // Leave the lines as is for the providers you want to offer your users.
-            firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+           firebase.auth.GoogleAuthProvider.PROVIDER_ID,
                     firebase.auth.EmailAuthProvider.PROVIDER_ID
                 ],
                 // Terms of service url.
-                'tosUrl': '<your-tos-url>',
+                'https://www.google.com': '<your-tos-url>',
             };
 
             // Initialize the FirebaseUI Widget using Firebase.
@@ -80,10 +93,10 @@
         console.log(error);
     });
 
-
+    
 
 
 </script>
-
+    
 </body>
 </html>
